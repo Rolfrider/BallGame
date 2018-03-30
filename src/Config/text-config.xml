@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>text properties</comment>
+<entry key="play lable">Play</entry>
+<entry key="option lable">Option</entry>
+<entry key="exit lable">Exit</entry>
+<entry key="level lable">Level</entry>
+<entry key="level value">1</entry>
+</properties>
