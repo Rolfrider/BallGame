@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="9.0.1" class="java.beans.XMLDecoder">
+ <object class="App.Game.Level" id="Level0">
+  <void property="gameObjects">
+   <void method="add">
+    <object class="App.Game.Goal" id="Goal0">
+     <void property="height">
+      <double>0.08</double>
+     </void>
+     <void property="width">
+      <double>0.08</double>
+     </void>
+     <void property="x">
+      <double>0.67</double>
+     </void>
+     <void property="y">
+      <double>0.17</double>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="App.Game.Player" id="Player0">
+     <void property="height">
+      <double>0.08</double>
+     </void>
+     <void property="playerColor">
+      <object class="java.awt.Color">
+       <int>128</int>
+       <int>128</int>
+       <int>128</int>
+       <int>255</int>
+      </object>
+     </void>
+     <void property="width">
+      <double>0.08</double>
+     </void>
+     <void property="x">
+      <double>0.17</double>
+     </void>
+     <void property="y">
+      <double>0.17</double>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="App.Game.Obstacle">
+     <void property="height">
+      <double>0.03</double>
+     </void>
+     <void property="width">
+      <double>1.0</double>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="App.Game.Obstacle">
+     <void property="height">
+      <double>1.0</double>
+     </void>
+     <void property="width">
+      <double>0.03</double>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="App.Game.Obstacle">
+     <void property="height">
+      <double>1.0</double>
+     </void>
+     <void property="width">
+      <double>0.03</double>
+     </void>
+     <void property="x">
+      <double>0.97</double>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="App.Game.Obstacle">
+     <void property="height">
+      <double>0.03</double>
+     </void>
+     <void property="width">
+      <double>1.0</double>
+     </void>
+     <void property="y">
+      <double>0.97</double>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="App.Game.Obstacle">
+     <void property="height">
+      <double>0.47</double>
+     </void>
+     <void property="width">
+      <double>0.03</double>
+     </void>
+     <void property="x">
+      <double>0.48</double>
+     </void>
+     <void property="y">
+      <double>0.03</double>
+     </void>
+    </object>
+   </void>
+  </void>
+  <void property="goal">
+   <object idref="Goal0"/>
+  </void>
+  <void property="levelNumber">
+   <int>1</int>
+  </void>
+  <void property="player">
+   <object idref="Player0"/>
+  </void>
+ </object>
+</java>

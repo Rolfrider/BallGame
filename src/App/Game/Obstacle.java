@@ -1,5 +1,4 @@
-package App;
-
+package App.Game;
 
 import java.awt.*;
 
@@ -7,6 +6,7 @@ public class Obstacle extends GameObject {
 
     protected Color fillColor = Color.RED;
 
+    public Obstacle(){}
 
     public Obstacle(double x, double y , double width, double height){
         super(x,y,width,height);
@@ -19,5 +19,14 @@ public class Obstacle extends GameObject {
         graphics2D.fillRect((int)(getX()*d.width), (int)(getY()*d.height),
                 (int)(getWidth()*d.width), (int)(getHeight()*d.height));
 
+    }
+
+    //Getters and Setters
+    public Color getFillColor() {
+        return fillColor;
+    }
+
+    public void setFillColor(Color fillColor) {
+        this.fillColor = fillColor;
     }
 }

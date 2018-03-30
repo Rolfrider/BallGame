@@ -1,10 +1,11 @@
-package App;
+package App.Game;
 import java.awt.*;
 
 public abstract class GameObject {
     private double x, y;
     private double width, height;
 
+    public GameObject(){}
 
     public GameObject(double x, double y , double width, double height){
         this.x = x;
@@ -15,6 +16,7 @@ public abstract class GameObject {
 
     public abstract void paintObject(Graphics g, Dimension d);
 
+    //Getters and Setters
     public double getWidth() {
         return width;
     }
