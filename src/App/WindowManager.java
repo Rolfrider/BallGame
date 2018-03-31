@@ -11,11 +11,16 @@ import java.util.Properties;
 
 public class WindowManager extends JFrame {
 
-    private Properties textProperties = Configuration.getTextConfig();
+    private Configuration config = new Configuration();
+    private Properties textProperties;
+    private Properties settingsProperties;
+
 
 
     WindowManager(){
         super("Ball game");
+        settingsProperties = config.getSettings();
+        textProperties = config.getTextConfig(settingsProperties.getProperty("language"));
         JPanel panel = new WelcomeWindow(this);
         add(panel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -31,6 +36,18 @@ public class WindowManager extends JFrame {
         return textProperties;
     }
 
+    public Properties getSettingsProperties() {
+        return settingsProperties;
+    }
+
+    public Configuration getConfig() {
+        return config;
+    }
+
+    public void exit(){
+        dispose();
+        System.exit(0);
+    }
 
     public void setWindow(JPanel panel){
         getContentPane().removeAll();

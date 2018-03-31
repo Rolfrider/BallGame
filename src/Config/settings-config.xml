@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>settings properties</comment>
+    <entry key="online">false</entry>
+    <entry key="level">2</entry>
+    <entry key="language">english</entry>
+</properties>

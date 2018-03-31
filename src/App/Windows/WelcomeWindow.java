@@ -13,13 +13,11 @@ public class WelcomeWindow extends JPanel {
     private ArrayList<JButton> buttons = new ArrayList<>();
     private JLabel titleLabel ;
     private JLabel levelLabel ;
-    private Properties textProp;
     private WindowManager windowManager;
 
 
 
     public WelcomeWindow(WindowManager windowManager){
-        this.textProp = windowManager.getTextProperties();
         this.windowManager = windowManager;
 
         setBackground(Color.BLACK);
@@ -65,23 +63,49 @@ public class WelcomeWindow extends JPanel {
 
         bagConstraints.gridy = 6;
 
+        add(buttons.get(3), bagConstraints);
+
+        bagConstraints.gridy = 7;
+
         add(levelLabel, bagConstraints);
     }
 
     private void initLabel() {
-        titleLabel = new JLabel(textProp.getProperty("game title"));
+        titleLabel = new JLabel(windowManager.getTextProperties().getProperty("game title"));
         titleLabel.setForeground(Color.WHITE);
 
-        levelLabel = new JLabel(textProp.getProperty("level label")
-        + " : " + textProp.getProperty("level value"));
+        String levelVal = "";
+
+        switch (windowManager.getSettingsProperties().getProperty("level")){
+            case "1":
+                levelVal = windowManager.getTextProperties().getProperty("easy level");
+                break;
+            case "2":
+                levelVal = windowManager.getTextProperties().getProperty("medium level");
+                break;
+            case "3":
+                levelVal = windowManager.getTextProperties().getProperty("hard level");
+                break;
+        }
+
+        levelLabel = new JLabel(windowManager.getTextProperties().getProperty("level label")
+        + " : " + levelVal );
+
+
+
         levelLabel.setForeground(Color.GRAY);
     }
 
     private void initButtons(){
-        buttons.add(new JButton(textProp.getProperty("play label")));
-        buttons.add(new JButton(textProp.getProperty("option label")));
-        buttons.add(new JButton(textProp.getProperty("exit label")));
+        buttons.add(new JButton(windowManager.getTextProperties().getProperty("play label")));
+        buttons.add(new JButton(windowManager.getTextProperties().getProperty("scoreboard label")));
+        buttons.add(new JButton(windowManager.getTextProperties().getProperty("option label")));
+        buttons.add(new JButton(windowManager.getTextProperties().getProperty("exit label")));
         buttons.get(0).addActionListener( actionEvent -> windowManager.setWindow(new GameWindow()));
+        buttons.get(1).addActionListener( actionEvent -> windowManager.setWindow(new ScoreboardWindow()));
+        buttons.get(2).addActionListener( actionEvent -> windowManager.setWindow(new OptionWindow()));
+        buttons.get(3).addActionListener( actionEvent -> windowManager.exit());
+
         for (JButton b : buttons) {
             b.setBackground(Color.BLACK);
             b.setForeground(Color.RED);

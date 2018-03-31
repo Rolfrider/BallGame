@@ -6,6 +6,9 @@
     <entry key="option label">Option</entry>
     <entry key="exit label">Exit</entry>
     <entry key="level label">Level</entry>
-    <entry key="level value">Easy</entry>
+    <entry key="easy level">Easy</entry>
+    <entry key="medium level">Medium</entry>
+    <entry key="hard level">Hard</entry>
     <entry key="game title">Game Ball</entry>
+    <entry key="scoreboard label">Scoreboard</entry>
 </properties>
