@@ -12,10 +12,27 @@ public class Level {
 
     public Level(){}
 
+    public boolean reachedGoal(){
+        return player.getShape().intersects(goal.getShape());
+    }
 
+    public boolean hitObstacle(){
+
+        for(GameObject gameObject : gameObjects) {
+            if (!(gameObject instanceof Player || gameObject instanceof Goal)) {
+                Obstacle o = (Obstacle) gameObject;
+                if (player.getShape().intersects(o.getShape()))
+                    return true;
+
+            }
+        }
+
+        return false;
+    }
 
     public void moveLevel(){
         movingObstacles.forEach(MovingObstacle::move);
+        player.move();
     }
 
 

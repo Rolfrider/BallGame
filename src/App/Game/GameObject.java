@@ -17,6 +17,8 @@ public abstract class GameObject {
     public abstract void paintObject(Graphics g, Dimension d);
 
     //Getters and Setters
+    public abstract Shape getShape();
+
     public double getWidth() {
         return width;
     }

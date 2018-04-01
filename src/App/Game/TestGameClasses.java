@@ -6,6 +6,7 @@ import App.Windows.GameWindow;
 import javax.swing.*;
 import java.awt.*;
 
+import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 
 public class TestGameClasses {
@@ -14,6 +15,7 @@ public class TestGameClasses {
     public static void main(String[] args) {
         TestGameClasses tgc = new TestGameClasses();
         tgc.encodingTest();
+
     }
 
 
@@ -53,6 +55,9 @@ public class TestGameClasses {
         level.setPlayer(player);
         level.setGoal(goal);
 
+        System.out.println(level.hitObstacle());
+        System.out.println(level.reachedGoal());
+
         JFrame frame = new JFrame();
         JPanel panel = new GameWindow();
         ((GameWindow) panel).setLevel(level);
@@ -63,7 +68,7 @@ public class TestGameClasses {
             frame.setVisible(true);
         });
 
-        levelLoader.saveLevel(level);
+        //levelLoader.saveLevel(level);
 
 
 

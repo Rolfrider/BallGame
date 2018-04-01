@@ -16,7 +16,6 @@ public class WindowManager extends JFrame {
     private Properties settingsProperties;
 
 
-
     WindowManager(){
         super("Ball game");
         settingsProperties = config.getSettings();

@@ -1,6 +1,7 @@
 package App.Game;
 
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 
 public class Obstacle extends GameObject {
 
@@ -19,6 +20,11 @@ public class Obstacle extends GameObject {
         graphics2D.fillRect((int)(getX()*d.width), (int)(getY()*d.height),
                 (int)(getWidth()*d.width), (int)(getHeight()*d.height));
 
+    }
+
+    @Override
+    public Rectangle2D.Double getShape() {
+        return new Rectangle2D.Double(getX(),getY(),getWidth(),getHeight());
     }
 
     //Getters and Setters

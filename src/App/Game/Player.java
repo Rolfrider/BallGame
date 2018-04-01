@@ -1,6 +1,8 @@
 package App.Game;
 
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 
 public class Player extends GameObject implements Movable{
 
@@ -18,10 +20,16 @@ public class Player extends GameObject implements Movable{
     }
 
     @Override
+    public Ellipse2D.Double getShape() {
+        return new Ellipse2D.Double(getX(),getY(),getWidth(),getHeight());
+    }
+
+    @Override
     public void paintObject(Graphics g, Dimension d) {
         Graphics2D graphics2D = (Graphics2D) g;
+
         graphics2D.setColor(Color.WHITE);
-        graphics2D.fillRect((int)(getX()*d.width), (int)(getY()*d.height),
+        graphics2D.fillOval((int)(getX()*d.width), (int)(getY()*d.height),
                 (int)(getWidth()*d.width), (int)(getHeight()*d.height));
     }
 

@@ -1,6 +1,7 @@
 package App.Game;
 
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 
 public class Goal extends GameObject {
 
@@ -9,6 +10,12 @@ public class Goal extends GameObject {
 
     public Goal(double x, double y, double width, double height) {
         super(x, y, width, height);
+    }
+
+
+    @Override
+    public Rectangle2D.Double getShape() {
+        return new Rectangle2D.Double(getX(),getY(),getWidth(),getHeight());
     }
 
     @Override
