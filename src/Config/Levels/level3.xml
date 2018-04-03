@@ -3,6 +3,25 @@
  <object class="App.Game.Level" id="Level0">
   <void property="gameObjects">
    <void method="add">
+    <object class="App.Game.MovingObstacle" id="MovingObstacle0">
+     <void property="height">
+      <double>0.03</double>
+     </void>
+     <void property="velY">
+      <double>0.005</double>
+     </void>
+     <void property="width">
+      <double>0.03</double>
+     </void>
+     <void property="x">
+      <double>0.4</double>
+     </void>
+     <void property="y">
+      <double>0.545</double>
+     </void>
+    </object>
+   </void>
+   <void method="add">
     <object class="App.Game.Goal" id="Goal0">
      <void property="height">
       <double>0.08</double>
@@ -11,10 +30,10 @@
       <double>0.08</double>
      </void>
      <void property="x">
-      <double>0.67</double>
+      <double>0.07</double>
      </void>
      <void property="y">
-      <double>0.17</double>
+      <double>0.57</double>
      </void>
     </object>
    </void>
@@ -38,10 +57,10 @@
       <double>0.08</double>
      </void>
      <void property="x">
-      <double>0.17</double>
+      <double>0.87</double>
      </void>
      <void property="y">
-      <double>0.17</double>
+      <double>0.27</double>
      </void>
     </object>
    </void>
@@ -94,16 +113,32 @@
    <void method="add">
     <object class="App.Game.Obstacle">
      <void property="height">
-      <double>0.47</double>
-     </void>
-     <void property="width">
       <double>0.03</double>
      </void>
+     <void property="width">
+      <double>0.3</double>
+     </void>
      <void property="x">
+      <double>0.03</double>
+     </void>
+     <void property="y">
       <double>0.48</double>
      </void>
-     <void property="y">
+    </object>
+   </void>
+   <void method="add">
+    <object class="App.Game.Obstacle">
+     <void property="height">
       <double>0.03</double>
+     </void>
+     <void property="width">
+      <double>0.3</double>
+     </void>
+     <void property="x">
+      <double>0.67</double>
+     </void>
+     <void property="y">
+      <double>0.48</double>
      </void>
     </object>
    </void>
@@ -112,7 +147,12 @@
    <object idref="Goal0"/>
   </void>
   <void property="levelNumber">
-   <int>1</int>
+   <int>3</int>
+  </void>
+  <void property="movingObstacles">
+   <void method="add">
+    <object idref="MovingObstacle0"/>
+   </void>
   </void>
   <void property="player">
    <object idref="Player0"/>

@@ -1,12 +1,12 @@
 package App.Game;
 
 import App.Config.LevelLoader;
+import App.WindowManager;
 import App.Windows.GameWindow;
 
 import javax.swing.*;
 import java.awt.*;
 
-import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 
 public class TestGameClasses {
@@ -38,25 +38,29 @@ public class TestGameClasses {
 
     void encodingTest(){
         ArrayList<GameObject> gameObjects = new ArrayList<>();
-        Player player = new Player(0.17,0.17, 0.08, 0.08);
-        Goal goal = new Goal(0.67,0.17,0.08,0.08);
+        ArrayList<MovingObstacle> movingObstacles = new ArrayList<>();
+        Player player = new Player(0.87,0.27, 0.08, 0.08, 0.01);
+        Goal goal = new Goal(0.07,0.57,0.08,0.08);
+        MovingObstacle mo = new MovingObstacle(0.4,0.53,0.03,0.03,0, 0.005);
+        movingObstacles.add(mo);
         player.setPlayerColor(Color.GRAY);
+        gameObjects.add(mo);
         gameObjects.add(goal);
         gameObjects.add(player);
         gameObjects.add(new Obstacle(0,0,1, 0.03));
         gameObjects.add(new Obstacle(0,0,0.03, 1));
         gameObjects.add(new Obstacle(0.97,0,0.03, 1));
         gameObjects.add(new Obstacle(0,0.97,1, 0.03));
-        gameObjects.add(new Obstacle(0.48,0.03,0.03, 0.47));
+        gameObjects.add(new Obstacle(0.03,0.48,0.30, 0.03));
+        gameObjects.add(new Obstacle(0.67,0.48,0.30, 0.03));
 
         Level level = new Level();
+        level.setMovingObstacles(movingObstacles);
         level.setGameObjects(gameObjects);
-        level.setLevelNumber(1);
+        level.setLevelNumber(3);// Set level number before saving
         level.setPlayer(player);
         level.setGoal(goal);
 
-        System.out.println(level.hitObstacle());
-        System.out.println(level.reachedGoal());
 
         JFrame frame = new JFrame();
         JPanel panel = new GameWindow();
@@ -68,6 +72,8 @@ public class TestGameClasses {
             frame.setVisible(true);
         });
 
+
+        //Uncomment to save the lvl
         //levelLoader.saveLevel(level);
 
 

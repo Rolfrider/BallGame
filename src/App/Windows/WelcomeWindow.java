@@ -18,6 +18,7 @@ public class WelcomeWindow extends JPanel {
 
 
     public WelcomeWindow(WindowManager windowManager){
+        super();
         this.windowManager = windowManager;
 
         setBackground(Color.BLACK);
@@ -101,9 +102,9 @@ public class WelcomeWindow extends JPanel {
         buttons.add(new JButton(windowManager.getTextProperties().getProperty("scoreboard label")));
         buttons.add(new JButton(windowManager.getTextProperties().getProperty("option label")));
         buttons.add(new JButton(windowManager.getTextProperties().getProperty("exit label")));
-        buttons.get(0).addActionListener( actionEvent -> windowManager.setWindow(new GameWindow()));
-        buttons.get(1).addActionListener( actionEvent -> windowManager.setWindow(new ScoreboardWindow()));
-        buttons.get(2).addActionListener( actionEvent -> windowManager.setWindow(new OptionWindow()));
+        buttons.get(0).addActionListener( actionEvent -> windowManager.setWindow(new GameWindow(windowManager)));
+        buttons.get(1).addActionListener( actionEvent -> windowManager.setWindow(new ScoreboardWindow(windowManager)));
+        buttons.get(2).addActionListener( actionEvent -> windowManager.setWindow(new OptionWindow(windowManager)));
         buttons.get(3).addActionListener( actionEvent -> windowManager.exit());
 
         for (JButton b : buttons) {

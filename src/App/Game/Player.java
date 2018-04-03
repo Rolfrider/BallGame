@@ -7,16 +7,24 @@ import java.awt.geom.Rectangle2D;
 public class Player extends GameObject implements Movable{
 
     private Color playerColor;
+    private double velX, velY;
+    private double gravityY;
 
     public Player(){}
 
-    public Player(double x, double y, double width, double height) {
+    public Player(double x, double y, double width, double height, double gravityY) {
         super(x, y, width, height);
+        this.gravityY = gravityY;
     }
 
     @Override
     public void move() {
-
+//        velY = 0;
+//        if(getY() > 1 - getHeight()|| getY() < 0 )
+//            gravityY *= -1;
+//        velY += gravityY;
+//        setX(getX() + velX);
+//        setY(getY() + velY);
     }
 
     @Override
@@ -34,6 +42,32 @@ public class Player extends GameObject implements Movable{
     }
 
     //Getters and Setters
+
+
+    public double getVelX() {
+        return velX;
+    }
+
+    public void setVelX(double velX) {
+        this.velX = velX;
+    }
+
+    public double getVelY() {
+        return velY;
+    }
+
+    public void setVelY(double velY) {
+        this.velY = velY;
+    }
+
+    public double getGravityY() {
+        return gravityY;
+    }
+
+    public void setGravityY(double gravityY) {
+        this.gravityY = gravityY;
+    }
+
     public Color getPlayerColor() {
         return playerColor;
     }

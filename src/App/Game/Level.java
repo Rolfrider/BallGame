@@ -1,6 +1,7 @@
 package App.Game;
 
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 public class Level {
@@ -12,11 +13,13 @@ public class Level {
 
     public Level(){}
 
+
+
     public boolean reachedGoal(){
         return player.getShape().intersects(goal.getShape());
     }
 
-    public boolean hitObstacle(){
+    public boolean PlayerHitObstacle(){
 
         for(GameObject gameObject : gameObjects) {
             if (!(gameObject instanceof Player || gameObject instanceof Goal)) {
@@ -28,6 +31,18 @@ public class Level {
         }
 
         return false;
+    }
+    public void ObstacleHitObstacle(){
+        for (MovingObstacle mo: movingObstacles) {
+            for(GameObject gameObject : gameObjects){
+                if (!(gameObject instanceof Player || gameObject.equals(mo))) {
+                    //Obstacle o = (Obstacle) gameObject;
+                    if (mo.getShape().intersects((Rectangle2D.Double) gameObject.getShape()))
+                        mo.reverseDirection();
+
+                }
+            }
+        }
     }
 
     public void moveLevel(){
