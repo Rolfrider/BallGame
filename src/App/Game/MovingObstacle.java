@@ -4,7 +4,7 @@ public class MovingObstacle extends Obstacle implements Movable {
 
     private double velX, velY;
 
-    public MovingObstacle(){};
+    public MovingObstacle(){}
 
     public MovingObstacle(double x, double y , double width, double height, double velX, double velY){
         super(x, y , width, height);

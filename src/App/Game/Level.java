@@ -19,7 +19,7 @@ public class Level {
         return player.getShape().intersects(goal.getShape());
     }
 
-    public boolean PlayerHitObstacle(){
+    public boolean playerHitObstacle(){
 
         for(GameObject gameObject : gameObjects) {
             if (!(gameObject instanceof Player || gameObject instanceof Goal)) {
@@ -32,7 +32,7 @@ public class Level {
 
         return false;
     }
-    public void ObstacleHitObstacle(){
+    public void obstacleHitObstacle(){
         for (MovingObstacle mo: movingObstacles) {
             for(GameObject gameObject : gameObjects){
                 if (!(gameObject instanceof Player || gameObject.equals(mo))) {

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="537.0" y="225.0">App.Game.GameObject</node>
+    <node x="156.0" y="1259.0">App.Config.Configuration</node>
+    <node x="306.0" y="761.0">App.Windows.GameWindow</node>
+    <node x="418.0" y="428.0">App.Game.Level</node>
+    <node x="797.0" y="122.0">App.Game.Movable</node>
+    <node x="194.0" y="568.0">App.Config.LevelLoader</node>
+    <node x="478.0" y="0.0">App.Game.Player</node>
+    <node x="852.0" y="307.0">App.Game.MovingObstacle</node>
+    <node x="369.0" y="1054.0">App.WindowManager</node>
+    <node x="613.0" y="880.0">App.Windows.WelcomeWindow</node>
+    <node x="222.0" y="255.0">App.Game.Goal</node>
+    <node x="652.0" y="1204.0">App.Windows.OptionWindow</node>
+    <node x="756.0" y="549.0">App.Game.Obstacle</node>
+    <node x="480.0" y="1296.0">App.Windows.ScoreboardWindow</node>
+    <node x="0.0" y="797.0">App.Game.GameLoop</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="App.Game.Player" target="App.Game.GameObject">
+      <point x="4.820162145251999" y="-1.328923208270453" />
+      <point x="4.820162145251999" y="-1.3289232082703961" />
+    </edge>
+    <edge source="App.Windows.ScoreboardWindow" target="App.WindowManager">
+      <point x="6.1803370277910545" y="0.0" />
+      <point x="6.180337027790955" y="0.0" />
+    </edge>
+    <edge source="App.Windows.OptionWindow" target="App.WindowManager">
+      <point x="17.020803005318044" y="0.0" />
+      <point x="0.0" y="-5.230783362609827" />
+    </edge>
+    <edge source="App.Windows.GameWindow" target="App.WindowManager">
+      <point x="4.957242630391761" y="-0.6524917650259283" />
+      <point x="4.957242630391754" y="-0.6524917650258999" />
+    </edge>
+    <edge source="App.Game.Level" target="App.Game.GameObject">
+      <point x="-4.584612241447751" y="-1.9953271901037795" />
+      <point x="-4.584612241447758" y="-1.995327190103751" />
+    </edge>
+    <edge source="App.Game.MovingObstacle" target="App.Game.Obstacle">
+      <point x="4.873374340359874" y="1.118133506662673" />
+      <point x="4.873374340359874" y="1.1181335066626588" />
+    </edge>
+    <edge source="App.Game.GameLoop" target="App.Windows.GameWindow">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="App.Game.Goal" target="App.Game.GameObject">
+      <point x="0.0" y="5.0049358353578555" />
+      <point x="0.0" y="5.004935835357912" />
+    </edge>
+    <edge source="App.Game.Level" target="App.Game.Goal">
+      <point x="-3.913835318056911" y="3.111574055543329" />
+      <point x="-3.913835318056897" y="3.111574055543315" />
+    </edge>
+    <edge source="App.Windows.GameWindow" target="App.Config.LevelLoader">
+      <point x="5.972771197686399" y="0.0" />
+      <point x="5.972771197686399" y="0.0" />
+    </edge>
+    <edge source="App.Game.MovingObstacle" target="App.Game.Movable">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="App.Windows.GameWindow" target="App.Game.GameLoop">
+      <point x="0.0" y="10.301197010504183" />
+      <point x="0.0" y="10.301197010504154" />
+    </edge>
+    <edge source="App.Windows.WelcomeWindow" target="App.Windows.GameWindow">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="App.WindowManager" target="App.Windows.WelcomeWindow">
+      <point x="0.0" y="-11.28636038721362" />
+      <point x="0.0" y="-11.28636038721362" />
+    </edge>
+    <edge source="App.Game.Level" target="App.Game.MovingObstacle">
+      <point x="0.0" y="5.574060757574529" />
+      <point x="0.0" y="5.574060757574557" />
+    </edge>
+    <edge source="App.Game.MovingObstacle" target="App.Game.GameObject">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="App.Game.Player" target="App.Game.Movable">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="App.Game.Obstacle" target="App.Game.GameObject">
+      <point x="-3.9950522391843606" y="3.0065857057779155" />
+      <point x="-3.9950522391843606" y="3.0065857057779226" />
+    </edge>
+    <edge source="App.Windows.WelcomeWindow" target="App.Windows.ScoreboardWindow">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="App.Windows.WelcomeWindow" target="App.Windows.OptionWindow">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="App.Windows.WelcomeWindow" target="App.WindowManager">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="App.WindowManager" target="App.Config.Configuration">
+      <point x="13.785575457029033" y="0.0" />
+      <point x="13.785575457029125" y="0.0" />
+    </edge>
+    <edge source="App.Windows.GameWindow" target="App.Game.Level">
+      <point x="-4.534510531645154" y="-2.1067069654793613" />
+      <point x="-4.534510531645147" y="-2.106706965479347" />
+    </edge>
+    <edge source="App.Game.Level" target="App.Game.Obstacle">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="App.Game.Level" target="App.Game.Player">
+      <point x="5.027594648423985" y="0.0" />
+      <point x="5.027594648423985" y="0.0" />
+    </edge>
+    <edge source="App.Config.LevelLoader" target="App.Game.Level">
+      <point x="-1.0883101698990174" y="-4.880120999943998" />
+      <point x="-1.0883101698990174" y="-4.880120999943998" />
+    </edge>
+  </edges>
+  <settings layout="Tree" zoom="0.6238615664845172" x="1079.7438530950055" y="692.4978102189782" />
+  <SelectedNodes>
+    <node>App.Windows.ScoreboardWindow</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

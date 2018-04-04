@@ -41,12 +41,15 @@ public class TestGameClasses {
         ArrayList<MovingObstacle> movingObstacles = new ArrayList<>();
         Player player = new Player(0.87,0.27, 0.08, 0.08, 0.01);
         Goal goal = new Goal(0.07,0.57,0.08,0.08);
+
         MovingObstacle mo = new MovingObstacle(0.4,0.53,0.03,0.03,0, 0.005);
         movingObstacles.add(mo);
+
         player.setPlayerColor(Color.GRAY);
         gameObjects.add(mo);
         gameObjects.add(goal);
         gameObjects.add(player);
+
         gameObjects.add(new Obstacle(0,0,1, 0.03));
         gameObjects.add(new Obstacle(0,0,0.03, 1));
         gameObjects.add(new Obstacle(0.97,0,0.03, 1));
