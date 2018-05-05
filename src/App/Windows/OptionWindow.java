@@ -5,10 +5,10 @@ import App.WindowManager;
 import javax.swing.*;
 
 public class OptionWindow extends JPanel {
-    private WindowManager windowManager;
+    private WindowManager windowParent;
 
-    public OptionWindow(WindowManager windowManager){
+    public OptionWindow(WindowManager windowParent){
         super();
-        this.windowManager = windowManager;
+        this.windowParent = windowParent;
     }
 }

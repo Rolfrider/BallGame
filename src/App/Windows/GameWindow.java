@@ -4,39 +4,56 @@ package App.Windows;
 
 import App.Config.LevelLoader;
 import App.Game.GameLoop;
-import App.Game.GameObject;
+import App.Game.KeyInput;
 import App.Game.Level;
-import App.Game.Obstacle;
 import App.WindowManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class GameWindow extends JPanel {
 
     private Level level;
+    private GameLoop gameLoop;
     private LevelLoader levelLoader = new LevelLoader();
-    private WindowManager windowManager;
+    private WindowManager windowParent; // A JFrame
 
 
     public GameWindow(){
         super();
         setBackground(Color.BLACK);
+        gameLoop = new GameLoop(this);
         level = levelLoader.loadLevel(1);
+        setFocusable(true);
         start();
     }
 
-    public GameWindow(WindowManager windowManager){
+
+
+    public GameWindow(WindowManager windowParent){
         super();
-        this.windowManager = windowManager;
+        this.windowParent = windowParent;
         setBackground(Color.BLACK);
+        gameLoop = new GameLoop(this);
         level = levelLoader.loadLevel(1);
+        setFocusable(true);
+        addKeyListener(new KeyInput(this));
         start();
     }
 
 
-    private void start(){
-        Thread thread = new Thread(new GameLoop(this));
+    public void pauseOrResume(){
+        if(gameLoop.isPause())
+            gameLoop.resume();
+        else
+            gameLoop.pause();
+    }
+
+    private  void start(){
+        Thread thread = new Thread(gameLoop);
         thread.start();
     }
 

@@ -40,7 +40,7 @@
    <void method="add">
     <object class="App.Game.Player" id="Player0">
      <void property="gravityY">
-      <double>0.01</double>
+      <double>0.005</double>
      </void>
      <void property="height">
       <double>0.08</double>

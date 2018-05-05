@@ -39,7 +39,7 @@ public class TestGameClasses {
     void encodingTest(){
         ArrayList<GameObject> gameObjects = new ArrayList<>();
         ArrayList<MovingObstacle> movingObstacles = new ArrayList<>();
-        Player player = new Player(0.87,0.27, 0.08, 0.08, 0.01);
+        Player player = new Player(0.87,0.27, 0.08, 0.08, 0.005);
         Goal goal = new Goal(0.07,0.57,0.08,0.08);
 
         MovingObstacle mo = new MovingObstacle(0.4,0.53,0.03,0.03,0, 0.005);

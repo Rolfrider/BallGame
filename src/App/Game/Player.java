@@ -2,7 +2,6 @@ package App.Game;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
 
 public class Player extends GameObject implements Movable{
 
@@ -19,12 +18,9 @@ public class Player extends GameObject implements Movable{
 
     @Override
     public void move() {
-//        velY = 0;
-//        if(getY() > 1 - getHeight()|| getY() < 0 )
-//            gravityY *= -1;
-//        velY += gravityY;
-//        setX(getX() + velX);
-//        setY(getY() + velY);
+        //velY += gravityY;
+        setX(getX() + velX);
+        setY(getY() + velY);
     }
 
     @Override

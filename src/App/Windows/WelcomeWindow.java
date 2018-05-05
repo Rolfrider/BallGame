@@ -1,25 +1,23 @@
 package App.Windows;
 
 import App.WindowManager;
-import App.Windows.GameWindow;
 
 import javax.swing.*;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Properties;
 
 public class WelcomeWindow extends JPanel {
     private ArrayList<JButton> buttons = new ArrayList<>();
     private JLabel titleLabel ;
     private JLabel levelLabel ;
-    private WindowManager windowManager;
+    private WindowManager windowParent;
 
 
 
-    public WelcomeWindow(WindowManager windowManager){
+    public WelcomeWindow(WindowManager windowParent){
         super();
-        this.windowManager = windowManager;
+        this.windowParent = windowParent;
 
         setBackground(Color.BLACK);
         setLayout(new GridBagLayout());
@@ -72,24 +70,24 @@ public class WelcomeWindow extends JPanel {
     }
 
     private void initLabel() {
-        titleLabel = new JLabel(windowManager.getTextProperties().getProperty("game title"));
+        titleLabel = new JLabel(windowParent.getTextProperties().getProperty("game title"));
         titleLabel.setForeground(Color.WHITE);
 
         String levelVal = "";
 
-        switch (windowManager.getSettingsProperties().getProperty("level")){
+        switch (windowParent.getSettingsProperties().getProperty("level")){
             case "1":
-                levelVal = windowManager.getTextProperties().getProperty("easy level");
+                levelVal = windowParent.getTextProperties().getProperty("easy level");
                 break;
             case "2":
-                levelVal = windowManager.getTextProperties().getProperty("medium level");
+                levelVal = windowParent.getTextProperties().getProperty("medium level");
                 break;
             case "3":
-                levelVal = windowManager.getTextProperties().getProperty("hard level");
+                levelVal = windowParent.getTextProperties().getProperty("hard level");
                 break;
         }
 
-        levelLabel = new JLabel(windowManager.getTextProperties().getProperty("level label")
+        levelLabel = new JLabel(windowParent.getTextProperties().getProperty("level label")
         + " : " + levelVal );
 
 
@@ -98,14 +96,14 @@ public class WelcomeWindow extends JPanel {
     }
 
     private void initButtons(){
-        buttons.add(new JButton(windowManager.getTextProperties().getProperty("play label")));
-        buttons.add(new JButton(windowManager.getTextProperties().getProperty("scoreboard label")));
-        buttons.add(new JButton(windowManager.getTextProperties().getProperty("option label")));
-        buttons.add(new JButton(windowManager.getTextProperties().getProperty("exit label")));
-        buttons.get(0).addActionListener( actionEvent -> windowManager.setWindow(new GameWindow(windowManager)));
-        buttons.get(1).addActionListener( actionEvent -> windowManager.setWindow(new ScoreboardWindow(windowManager)));
-        buttons.get(2).addActionListener( actionEvent -> windowManager.setWindow(new OptionWindow(windowManager)));
-        buttons.get(3).addActionListener( actionEvent -> windowManager.exit());
+        buttons.add(new JButton(windowParent.getTextProperties().getProperty("play label")));
+        buttons.add(new JButton(windowParent.getTextProperties().getProperty("scoreboard label")));
+        buttons.add(new JButton(windowParent.getTextProperties().getProperty("option label")));
+        buttons.add(new JButton(windowParent.getTextProperties().getProperty("exit label")));
+        buttons.get(0).addActionListener( actionEvent -> windowParent.setWindow(new GameWindow(windowParent)));
+        buttons.get(1).addActionListener( actionEvent -> windowParent.setWindow(new ScoreboardWindow(windowParent)));
+        buttons.get(2).addActionListener( actionEvent -> windowParent.setWindow(new OptionWindow(windowParent)));
+        buttons.get(3).addActionListener( actionEvent -> windowParent.exit());
 
         for (JButton b : buttons) {
             b.setBackground(Color.BLACK);

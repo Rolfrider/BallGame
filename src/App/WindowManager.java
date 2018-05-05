@@ -51,6 +51,7 @@ public class WindowManager extends JFrame {
     public void setWindow(JPanel panel){
         getContentPane().removeAll();
         add(panel);
+        panel.requestFocusInWindow();
         pack();
     }
 }

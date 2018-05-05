@@ -5,10 +5,10 @@ import App.WindowManager;
 import javax.swing.*;
 
 public class ScoreboardWindow extends JPanel {
-    private WindowManager windowManager;
+    private WindowManager windowParent;
 
-    public ScoreboardWindow(WindowManager windowManager){
+    public ScoreboardWindow(WindowManager windowParent){
         super();
-        this.windowManager = windowManager;
+        this.windowParent = windowParent;
     }
 }

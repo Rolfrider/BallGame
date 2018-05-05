@@ -4,17 +4,40 @@ import App.Windows.GameWindow;
 
 public class GameLoop implements Runnable{
 
-    private GameWindow gameWindow;
-    private boolean running;
+    private GameWindow windowParent;
+    private boolean running, pause;
     private final int TARGET_FPS = 60;
     private final long ONE_NS = 1000000000;
     private final long OPTIMAL_TIME = ONE_NS/TARGET_FPS;
     private long lastFpsTime;
     private int fps;
 
-    public GameLoop(GameWindow gameWindow){
-        this.gameWindow = gameWindow;
+    public GameLoop(GameWindow windowParent){
+        this.windowParent = windowParent;
         running = true;
+        pause = true;
+    }
+
+    public boolean isPause() {
+        return pause;
+    }
+
+    public synchronized void pause(){
+        pause = true;
+    }
+
+    public synchronized void resume(){
+        pause = false;
+        notify();
+    }
+
+    private synchronized void Paused(){
+        try{
+            if (pause)
+                wait();
+        }catch (InterruptedException ex){
+            ex.getMessage();
+        }
     }
 
     @Override
@@ -24,8 +47,12 @@ public class GameLoop implements Runnable{
 
     // More info : http://www.java-gaming.org/index.php?topic=24220.0
     private void loop(){
+
         long lastLoopTime = System.nanoTime();
         while (running){
+
+            Paused();
+
             // work out how long its been since the last update, this
             // will be used to calculate how far the entities should
             // move this loop
@@ -51,7 +78,7 @@ public class GameLoop implements Runnable{
             update();
 
             // draw everything
-            gameWindow.repaint();
+            windowParent.repaint();
 
             // we want each frame to take 10 milliseconds, to do this
             // we've recorded when we started the frame. We add 10 milliseconds
@@ -68,12 +95,12 @@ public class GameLoop implements Runnable{
 
 
     public void update(){
-        if(gameWindow.getLevel().reachedGoal())
+        if(windowParent.getLevel().reachedGoal())
             System.out.println("reached goal");;
-        if(gameWindow.getLevel().playerHitObstacle())
+        if(windowParent.getLevel().playerHitObstacle())
             System.out.println("hit obstacle");;
-        gameWindow.getLevel().obstacleHitObstacle();
-        gameWindow.getLevel().moveLevel();
+        windowParent.getLevel().obstacleHitObstacle();
+        windowParent.getLevel().moveLevel();
     }
 
 
