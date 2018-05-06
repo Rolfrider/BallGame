@@ -15,7 +15,9 @@ public class WindowManager extends JFrame {
     private Properties textProperties;
     private Properties settingsProperties;
 
-
+    /**
+     * Manages windows and their funcionalities
+     */
     public WindowManager(){
         super("Ball game");
         settingsProperties = config.getSettings();
@@ -43,6 +45,9 @@ public class WindowManager extends JFrame {
         return config;
     }
 
+    /**
+     * Closes window
+     */
     public void exit(){
         dispose();
         System.exit(0);

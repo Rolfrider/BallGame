@@ -1,12 +1,22 @@
 package App.Game;
 import java.awt.*;
 
+/**
+ * Abstract object defining basic game object properties
+ */
 public abstract class GameObject {
     private double x, y;
     private double width, height;
 
     public GameObject(){}
 
+    /**
+     * Game object constructor
+     * @param x x coordinates
+     * @param y y coordinates
+     * @param width width of the object
+     * @param height height of the object
+     */
     public GameObject(double x, double y , double width, double height){
         this.x = x;
         this.y = y;
@@ -14,6 +24,11 @@ public abstract class GameObject {
         this.height = height;
     }
 
+    /**
+     * Paints object
+     * @param g graphics
+     * @param d dimension
+     */
     public abstract void paintObject(Graphics g, Dimension d);
 
     //Getters and Setters

@@ -3,6 +3,9 @@ package App.Game;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
+/**
+ * Player controlled object
+ */
 public class Player extends GameObject implements Movable{
 
     private Color playerColor;
@@ -12,12 +15,22 @@ public class Player extends GameObject implements Movable{
 
     public Player(){}
 
+    /**
+     * Player object constructor
+     * @param x x coordinates
+     * @param y y coordinates
+     * @param width width dimension
+     * @param height height dimension
+     * @param gravityY gravity acceleration
+     */
     public Player(double x, double y, double width, double height, double gravityY) {
         super(x, y, width, height);
         this.gravityY = gravityY;
     }
 
-
+    /**
+     * Moves the player object
+     */
     @Override
     public void move() {
         velY = Math.abs(velY) > maxSpeed ? maxSpeed : velY;
@@ -26,11 +39,20 @@ public class Player extends GameObject implements Movable{
         setY(getY() + velY + gravityY);
     }
 
+    /**
+     * Returns shape of the player controlled object
+     * @return
+     */
     @Override
     public Ellipse2D.Double getShape() {
         return new Ellipse2D.Double(getX(),getY(),getWidth(),getHeight());
     }
 
+    /**
+     * Paints the player object
+     * @param g graphics
+     * @param d dimension
+     */
     @Override
     public void paintObject(Graphics g, Dimension d) {
         Graphics2D graphics2D = (Graphics2D) g;
@@ -41,7 +63,6 @@ public class Player extends GameObject implements Movable{
     }
 
     //Getters and Setters
-
 
     public double getVelX() {
         return velX;

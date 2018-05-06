@@ -6,19 +6,27 @@ import App.Windows.GameWindow;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+/**
+ * Object responsible for processing key input
+ */
 public class KeyInput extends KeyAdapter {
 
     private GameWindow windowParent;
 
     private final double keySensitivity = 0.001;
 
-
-
+    /**
+     * Assigns window parent
+     * @param windowParent
+     */
     public KeyInput(GameWindow windowParent){
         this.windowParent = windowParent;
-
     }
 
+    /**
+     * Changes key input into ball movement
+     * @param e key pressed
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
@@ -34,6 +42,10 @@ public class KeyInput extends KeyAdapter {
 
     }
 
+    /**
+     * Pauses or resumes game based on key release
+     * @param e key released
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();

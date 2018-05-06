@@ -3,13 +3,17 @@ package App.Config;
 import java.io.*;
 import java.util.Properties;
 
-/**
- *
+/** Stores configuration information
  */
 public class Configuration {
     private final String TEXT_PATH = "src/Config/Text/";
     private final String SETTINGS_PATH = "src/Config/settings-config.xml";
 
+    /**
+     * Loads configuration from xml file
+     * @param language
+     * @return object containing properties
+     */
     public  Properties getTextConfig(String language){
         Properties properties = new Properties();
         try{
@@ -19,10 +23,13 @@ public class Configuration {
         }catch (IOException e) {
             System.out.println(e.getMessage());
         }
-
         return properties;
     }
 
+    /**
+     * Loads settings from xml file
+     * @return object containing properties
+     */
     public Properties getSettings(){
         Properties properties = new Properties();
         try{
@@ -36,6 +43,10 @@ public class Configuration {
         return properties;
     }
 
+    /**
+     * Saves settings to xml file
+     * @param properties
+     */
     public void saveSettings(Properties properties){
         try{
             OutputStream oStream = new FileOutputStream(SETTINGS_PATH);
@@ -48,6 +59,7 @@ public class Configuration {
 
 
     /**
+     * Saves settings to xml file
      * @param properties
      */
     public  void saveTextConfig(Properties properties){

@@ -9,6 +9,9 @@ import java.awt.*;
 
 import java.util.ArrayList;
 
+/**
+ * Tool to create new game levels
+ */
 public class TestGameClasses {
     LevelLoader levelLoader = new LevelLoader();
 
@@ -35,7 +38,9 @@ public class TestGameClasses {
     }
 
 
-
+    /**
+     * Used to create, preview and save levels
+     */
     void encodingTest(){
         ArrayList<GameObject> gameObjects = new ArrayList<>();
         ArrayList<MovingObstacle> movingObstacles = new ArrayList<>();

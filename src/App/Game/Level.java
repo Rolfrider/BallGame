@@ -4,6 +4,9 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
+/**
+ * Object containing level specification
+ */
 public class Level {
     private Player player;
     private Goal goal;
@@ -13,12 +16,18 @@ public class Level {
 
     public Level(){}
 
-
-
+    /**
+     * Indicates if the goal has been reached
+     * @return
+     */
     public boolean reachedGoal(){
         return player.getShape().intersects(goal.getShape());
     }
 
+    /**
+     * Indicates if the player hit an obstacle
+     * @return
+     */
     public boolean playerHitObstacle(){
 
         for(GameObject gameObject : gameObjects) {
@@ -28,9 +37,12 @@ public class Level {
                     return true;
             }
         }
-
         return false;
     }
+
+    /**
+     * Indicates if the obstacle hit another obstacle
+     */
     public void obstacleHitObstacle(){
         for (MovingObstacle mo: movingObstacles) {
             for(GameObject gameObject : gameObjects){
@@ -44,12 +56,19 @@ public class Level {
         }
     }
 
+    /**
+     * Moves all objects that should move
+     */
     public void moveLevel(){
         movingObstacles.forEach(MovingObstacle::move);
         player.move();
     }
 
-
+    /**
+     * Paints level
+     * @param g graphics
+     * @param d dimension
+     */
     public void paintLevel(Graphics g, Dimension d){
         gameObjects.forEach( gameObject -> gameObject.paintObject(g,d));
     }

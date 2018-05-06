@@ -2,6 +2,9 @@ package App.Game;
 
 import App.Windows.GameWindow;
 
+/**
+ * Main game loop
+ */
 public class GameLoop implements Runnable{
 
     private GameWindow windowParent;
@@ -12,25 +15,42 @@ public class GameLoop implements Runnable{
     private long lastFpsTime;
     private int fps;
 
+    /**
+     * Sets active windowParent
+     * @param windowParent
+     */
     public GameLoop(GameWindow windowParent){
         this.windowParent = windowParent;
         running = true;
         pause = true;
     }
 
+    /**
+     * Checks if the loop is paused
+     * @return Boolean indicating pause
+     */
     public boolean isPause() {
         return pause;
     }
 
+    /**
+     * Pauses loop
+     */
     public synchronized void pause(){
         pause = true;
     }
 
+    /**
+     * Resumes loop
+     */
     public synchronized void resume(){
         pause = false;
         notify();
     }
 
+    /**
+     * Waiting for loop to resume
+     */
     private synchronized void Paused(){
         try{
             if (pause)
@@ -40,11 +60,17 @@ public class GameLoop implements Runnable{
         }
     }
 
+    /**
+     * Runs loop
+     */
     @Override
     public void run() {
         loop();
     }
 
+    /**
+     * Loop main body
+     */
     // More info : http://www.java-gaming.org/index.php?topic=24220.0
     private void loop(){
 
@@ -93,7 +119,9 @@ public class GameLoop implements Runnable{
         }
     }
 
-
+    /**
+     * Updates game status
+     */
     public void update(){
         if(windowParent.getLevel().reachedGoal()) {
             System.out.println("reached goal");

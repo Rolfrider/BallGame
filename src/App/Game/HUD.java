@@ -3,6 +3,9 @@ package App.Game;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Object corresponding to heads-up display indicating score and important info
+ */
 public class HUD extends GameObject{
     private int score = 0;
     private int level;
@@ -17,7 +20,11 @@ public class HUD extends GameObject{
         this.lives = lives;
     }
 
-
+    /**
+     * Paints HUD object
+     * @param g graphics
+     * @param d dimension
+     */
     @Override
     public void paintObject(Graphics g, Dimension d) {
         g.setColor(Color.WHITE);
