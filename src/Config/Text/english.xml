@@ -3,7 +3,7 @@
 <properties>
     <comment>text properties</comment>
     <entry key="play label">Play</entry>
-    <entry key="option label">Option</entry>
+    <entry key="options label">Options</entry>
     <entry key="exit label">Exit</entry>
     <entry key="level label">Level</entry>
     <entry key="easy level">Easy</entry>
@@ -13,4 +13,5 @@
     <entry key="hard level">Hard</entry>
     <entry key="game title">Game Ball</entry>
     <entry key="scoreboard label">Scoreboard</entry>
+    <entry key="back label">Back</entry>
 </properties>

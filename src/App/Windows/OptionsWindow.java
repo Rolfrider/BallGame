@@ -5,27 +5,18 @@ import App.WindowManager;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class ScoreboardWindow extends JPanel {
+public class OptionsWindow extends JPanel {
     private WindowManager windowParent;
     private ArrayList<JButton> buttons = new ArrayList<>();
-    private JLabel optionsLabel ;
-    private ArrayList<JLabel> scoreLabel = new ArrayList<>();
-    private ArrayList<Integer> scores = new ArrayList<>();
-    private ArrayList<String> names = new ArrayList<>();
+    private JLabel optionsLabel;
 
-    public ScoreboardWindow(WindowManager windowParent){
+    public OptionsWindow(WindowManager windowParent){
         super();
         this.windowParent = windowParent;
 
         setBackground(Color.BLACK);
         setLayout(new GridBagLayout());
-
-        Arrays.asList("jbutton,lhamilton,pmaldonado,fmassa,nrosberg".split(","))
-                .forEach(a -> names.add(a));
-        Arrays.asList("2000,1800,1600,1400,1000".split(","))
-                .forEach(a -> scores.add(Integer.parseInt(a)));
 
         initButtons();
         initLabel();
@@ -46,24 +37,17 @@ public class ScoreboardWindow extends JPanel {
 
         add(optionsLabel, bagConstraints);
 
-        int k = 3;
         //Other components setup
-        bagConstraints.gridy = k++;
+        bagConstraints.gridy = 3;
         bagConstraints.gridheight = 1;
         bagConstraints.anchor = GridBagConstraints.CENTER;
 
-        for (JLabel label: scoreLabel) {
-            bagConstraints.gridy = k++;
-            add(label,bagConstraints);
-        }
-        //add(scoreLabel.get(0),bagConstraints);
-
-        bagConstraints.gridy = k++;
+        bagConstraints.gridy = 4;
 
         add(buttons.get(0), bagConstraints);
 
 
-        bagConstraints.gridy = k++;
+        bagConstraints.gridy = 5;
 
         add(buttons.get(1), bagConstraints);
     }
@@ -83,15 +67,9 @@ public class ScoreboardWindow extends JPanel {
     }
 
     private void initLabel() {
-        optionsLabel = new JLabel(windowParent.getTextProperties().getProperty("scoreboard label"));
+        optionsLabel = new JLabel(windowParent.getTextProperties().getProperty("options label"));
         optionsLabel.setForeground(Color.WHITE);
 
-        for (int i=0; i < names.size(); i++) {
-            scoreLabel.add(new JLabel(names.get(i) + " - " + scores.get(i)));
-            scoreLabel.get(i).setForeground(Color.RED);
-        }
-        /*scoreLabel =  new JLabel(score + "");
-        scoreLabel.setForeground(Color.RED);*/
     }
 
 
@@ -111,10 +89,5 @@ public class ScoreboardWindow extends JPanel {
             b.setFont(new Font(Font.SERIF,Font.ITALIC, fontSize));
         }
         optionsLabel.setFont(new Font(Font.SERIF, Font.BOLD, fontSize*3));
-        for (JLabel label: scoreLabel) {
-            label.setFont(new Font(Font.SERIF, Font.BOLD, fontSize));
-        }
-        //scoreLabel.setFont(new Font(Font.SERIF, Font.BOLD, fontSize*2));
-
     }
 }

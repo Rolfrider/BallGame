@@ -96,11 +96,11 @@ public class WelcomeWindow extends JPanel {
     private void initButtons(){
         buttons.add(new JButton(windowParent.getTextProperties().getProperty("play label")));
         buttons.add(new JButton(windowParent.getTextProperties().getProperty("scoreboard label")));
-        buttons.add(new JButton(windowParent.getTextProperties().getProperty("option label")));
+        buttons.add(new JButton(windowParent.getTextProperties().getProperty("options label")));
         buttons.add(new JButton(windowParent.getTextProperties().getProperty("exit label")));
         buttons.get(0).addActionListener( actionEvent -> windowParent.setWindow(new GameWindow(windowParent)));
         buttons.get(1).addActionListener( actionEvent -> windowParent.setWindow(new ScoreboardWindow(windowParent)));
-        buttons.get(2).addActionListener( actionEvent -> windowParent.setWindow(new OptionWindow(windowParent)));
+        buttons.get(2).addActionListener( actionEvent -> windowParent.setWindow(new OptionsWindow(windowParent)));
         buttons.get(3).addActionListener( actionEvent -> windowParent.exit());
 
         for (JButton b : buttons) {
