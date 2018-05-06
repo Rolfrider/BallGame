@@ -73,6 +73,7 @@ public class TestGameClasses {
         EventQueue.invokeLater(() -> {
             frame.pack();
             frame.setVisible(true);
+            panel.requestFocusInWindow();
         });
 
 

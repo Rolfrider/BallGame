@@ -8,6 +8,7 @@ public class Player extends GameObject implements Movable{
     private Color playerColor;
     private double velX, velY;
     private double gravityY;
+    private final double maxSpeed = 0.005;
 
     public Player(){}
 
@@ -16,11 +17,13 @@ public class Player extends GameObject implements Movable{
         this.gravityY = gravityY;
     }
 
+
     @Override
     public void move() {
-        //velY += gravityY;
+        velY = velY > maxSpeed ? maxSpeed : velY;
+        velX = velX > maxSpeed ? maxSpeed : velX;
         setX(getX() + velX);
-        setY(getY() + velY);
+        setY(getY() + velY + gravityY);
     }
 
     @Override

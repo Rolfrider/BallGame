@@ -28,6 +28,7 @@ public class GameWindow extends JPanel {
         gameLoop = new GameLoop(this);
         level = levelLoader.loadLevel(1);
         setFocusable(true);
+        addKeyListener(new KeyInput(this));
         start();
     }
 
@@ -50,6 +51,10 @@ public class GameWindow extends JPanel {
             gameLoop.resume();
         else
             gameLoop.pause();
+    }
+
+    public void gameOver(){
+        windowParent.setWindow(new GameOverWindow(windowParent, 2));
     }
 
     private  void start(){

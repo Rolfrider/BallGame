@@ -7,6 +7,8 @@
     <entry key="exit label">Exit</entry>
     <entry key="level label">Level</entry>
     <entry key="easy level">Easy</entry>
+    <entry key="menu label">Main Menu</entry>
+    <entry key="game over label">Game Over</entry>
     <entry key="medium level">Medium</entry>
     <entry key="hard level">Hard</entry>
     <entry key="game title">Game Ball</entry>

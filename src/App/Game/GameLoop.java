@@ -97,8 +97,11 @@ public class GameLoop implements Runnable{
     public void update(){
         if(windowParent.getLevel().reachedGoal())
             System.out.println("reached goal");;
-        if(windowParent.getLevel().playerHitObstacle())
-            System.out.println("hit obstacle");;
+        if(windowParent.getLevel().playerHitObstacle()) {
+            System.out.println("hit obstacle");
+            running = false;
+            windowParent.gameOver();
+        }
         windowParent.getLevel().obstacleHitObstacle();
         windowParent.getLevel().moveLevel();
     }

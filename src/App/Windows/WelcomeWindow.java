@@ -26,8 +26,6 @@ public class WelcomeWindow extends JPanel {
         initLabel();
         placeComponents();
 
-
-
     }
 
     private void placeComponents() {

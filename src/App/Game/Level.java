@@ -26,7 +26,6 @@ public class Level {
                 Obstacle o = (Obstacle) gameObject;
                 if (player.getShape().intersects(o.getShape()))
                     return true;
-
             }
         }
 
