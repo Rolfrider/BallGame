@@ -10,7 +10,7 @@ public class KeyInput extends KeyAdapter {
 
     private GameWindow windowParent;
 
-    private double keySensitivity = 0.001;
+    private final double keySensitivity = 0.001;
 
 
 

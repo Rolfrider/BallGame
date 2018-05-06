@@ -73,7 +73,7 @@ public class WelcomeWindow extends JPanel {
 
         String levelVal = "";
 
-        switch (windowParent.getSettingsProperties().getProperty("level")){
+        switch (windowParent.getSettingsProperties().getProperty("difficulty")){
             case "1":
                 levelVal = windowParent.getTextProperties().getProperty("easy level");
                 break;

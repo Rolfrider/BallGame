@@ -20,8 +20,8 @@ public class Player extends GameObject implements Movable{
 
     @Override
     public void move() {
-        velY = velY > maxSpeed ? maxSpeed : velY;
-        velX = velX > maxSpeed ? maxSpeed : velX;
+        velY = Math.abs(velY) > maxSpeed ? maxSpeed : velY;
+        velX = Math.abs(velX) > maxSpeed ? maxSpeed : velX;
         setX(getX() + velX);
         setY(getY() + velY + gravityY);
     }
