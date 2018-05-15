@@ -1,5 +1,7 @@
 package App.Game;
 
+import App.Config.SpriteLoader;
+
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
@@ -8,7 +10,10 @@ import java.awt.geom.Rectangle2D;
  */
 public class Goal extends GameObject {
 
-    public Goal(){}
+    public Goal(){
+        setSpriteID("src/Config/Resources/door.png");
+        setSprite(SpriteLoader.loadSprite(getSpriteID()));
+    }
 
     /**
      * Goal constructor
@@ -38,8 +43,10 @@ public class Goal extends GameObject {
     @Override
     public void paintObject(Graphics g, Dimension d) {
         Graphics2D graphics2D = (Graphics2D) g;
-        graphics2D.setColor(Color.CYAN);
-        graphics2D.fillRect((int)(getX()*d.width), (int)(getY()*d.height),
-                (int)(getWidth()*d.width), (int)(getHeight()*d.height));
+//        graphics2D.setColor(Color.CYAN);
+//        graphics2D.fillRect((int)(getX()*d.width), (int)(getY()*d.height),
+//                (int)(getWidth()*d.width), (int)(getHeight()*d.height));
+        g.drawImage(getSprite(),(int)(getX()*d.width), (int)(getY()*d.height),
+                (int)(getWidth()*d.width), (int)(getHeight()*d.height),null);
     }
 }

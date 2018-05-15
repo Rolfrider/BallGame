@@ -10,7 +10,7 @@ public class HUD extends GameObject{
     private int score = 0;
     private int level;
     private int lives;
-    private final double y = 0.02;
+    private final double y = 0.025;
     private final double xScore = 0.475,
                         xLevel = 0.03,
                         xLives = 0.875;

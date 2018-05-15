@@ -1,5 +1,7 @@
 package App.Game;
 
+import App.Config.SpriteLoader;
+
 /**
  * Object corresponding to moving game obstacles
  */
@@ -7,7 +9,7 @@ public class MovingObstacle extends Obstacle implements Movable {
 
     private double velX, velY;
 
-    public MovingObstacle(){}
+    public MovingObstacle(){ }
 
     /**
      * Moving obstacle creator

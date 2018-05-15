@@ -1,7 +1,12 @@
 package App.Game;
 
+import App.Config.SpriteLoader;
+
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 /**
  * Defines non movable obstacle
@@ -10,7 +15,10 @@ public class Obstacle extends GameObject {
 
     protected Color fillColor = Color.RED;
 
-    public Obstacle(){}
+    public Obstacle(){
+        setSpriteID("src/Config/Resources/brick_wall.gif");
+        setSprite(SpriteLoader.loadSprite(getSpriteID()));
+    }
 
     /**
      * Obstacle creator
@@ -21,6 +29,7 @@ public class Obstacle extends GameObject {
      */
     public Obstacle(double x, double y , double width, double height){
         super(x,y,width,height);
+
     }
 
     /**
@@ -31,9 +40,11 @@ public class Obstacle extends GameObject {
     @Override
     public void paintObject(Graphics g, Dimension d) {
         Graphics2D graphics2D = (Graphics2D) g;
-        graphics2D.setColor(fillColor);
-        graphics2D.fillRect((int)(getX()*d.width), (int)(getY()*d.height),
-                (int)(getWidth()*d.width), (int)(getHeight()*d.height));
+//        graphics2D.setColor(fillColor);
+//        graphics2D.fillRect((int)(getX()*d.width), (int)(getY()*d.height),
+//                (int)(getWidth()*d.width), (int)(getHeight()*d.height));
+        g.drawImage(getSprite(),(int)(getX()*d.width), (int)(getY()*d.height),
+                (int)(getWidth()*d.width), (int)(getHeight()*d.height),null);
 
     }
 

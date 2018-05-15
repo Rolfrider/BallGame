@@ -7,6 +7,9 @@ import java.awt.*;
 public abstract class GameObject {
     private double x, y;
     private double width, height;
+    private String spriteID;
+    // transient - field is not serialize
+    private transient Image sprite;
 
     public GameObject(){}
 
@@ -33,6 +36,22 @@ public abstract class GameObject {
 
     //Getters and Setters
     public abstract Shape getShape();
+
+    public Image getSprite() {
+        return sprite;
+    }
+
+    public void setSprite(Image sprite) {
+        this.sprite = sprite;
+    }
+
+    public String getSpriteID() {
+        return spriteID;
+    }
+
+    public void setSpriteID(String spriteID) {
+        this.spriteID = spriteID;
+    }
 
     public double getWidth() {
         return width;

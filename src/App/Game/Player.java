@@ -1,5 +1,7 @@
 package App.Game;
 
+import App.Config.SpriteLoader;
+
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
@@ -13,7 +15,10 @@ public class Player extends GameObject implements Movable{
     private double gravityY;
     private final double maxSpeed = 0.005;
 
-    public Player(){}
+    public Player(){
+        setSpriteID("src/Config/Resources/batman_right.gif");
+        setSprite(SpriteLoader.loadSprite(getSpriteID()));
+    }
 
     /**
      * Player object constructor
@@ -25,6 +30,7 @@ public class Player extends GameObject implements Movable{
      */
     public Player(double x, double y, double width, double height, double gravityY) {
         super(x, y, width, height);
+
         this.gravityY = gravityY;
     }
 
@@ -57,9 +63,11 @@ public class Player extends GameObject implements Movable{
     public void paintObject(Graphics g, Dimension d) {
         Graphics2D graphics2D = (Graphics2D) g;
 
-        graphics2D.setColor(Color.WHITE);
-        graphics2D.fillOval((int)(getX()*d.width), (int)(getY()*d.height),
-                (int)(getWidth()*d.width), (int)(getHeight()*d.height));
+        g.drawImage(getSprite(),(int)(getX()*d.width), (int)(getY()*d.height),
+                (int)(getWidth()*d.width), (int)(getHeight()*d.height),null);
+//        graphics2D.setColor(Color.WHITE);
+//        graphics2D.fillOval((int)(getX()*d.width), (int)(getY()*d.height),
+//                (int)(getWidth()*d.width), (int)(getHeight()*d.height));
     }
 
     //Getters and Setters
