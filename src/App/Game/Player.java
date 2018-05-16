@@ -4,6 +4,8 @@ import App.Config.SpriteLoader;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
+import java.io.IOException;
 
 /**
  * Player controlled object
@@ -14,10 +16,15 @@ public class Player extends GameObject implements Movable{
     private double velX, velY;
     private double gravityY;
     private final double maxSpeed = 0.005;
+    private transient Image leftRun;
+    private transient Image rightRun;
 
-    public Player(){
-        setSpriteID("src/Config/Resources/batman_right.gif");
-        setSprite(SpriteLoader.loadSprite(getSpriteID()));
+    public Player(){}
+
+    public void init(){
+        leftRun = SpriteLoader.loadSprite(getSpriteID() + "left.gif");
+        rightRun = SpriteLoader.loadSprite(getSpriteID() + "right.gif");
+        setSprite(rightRun);
     }
 
     /**
@@ -39,8 +46,12 @@ public class Player extends GameObject implements Movable{
      */
     @Override
     public void move() {
-        velY = Math.abs(velY) > maxSpeed ? maxSpeed : velY;
-        velX = Math.abs(velX) > maxSpeed ? maxSpeed : velX;
+        setSprite(SpriteLoader.loadSprite(getSpriteID()));
+
+        if(Math.abs(velY) > maxSpeed)
+            velY = Math.signum(velY)*maxSpeed;
+        if(Math.abs(velX) > maxSpeed)
+            velX = Math.signum(velX)*maxSpeed;
         setX(getX() + velX);
         setY(getY() + velY + gravityY);
     }
@@ -50,8 +61,12 @@ public class Player extends GameObject implements Movable{
      * @return
      */
     @Override
-    public Ellipse2D.Double getShape() {
-        return new Ellipse2D.Double(getX(),getY(),getWidth(),getHeight());
+    public Rectangle2D.Double getShape() {
+
+        double verticalFrame = getHeight()*0.5;
+        double horizontalFrame = getWidth()*0.5;
+        return new Rectangle2D.Double(getX()+ horizontalFrame,getY()+ verticalFrame
+                ,getWidth()- horizontalFrame,getHeight()- verticalFrame);
     }
 
     /**
@@ -62,6 +77,11 @@ public class Player extends GameObject implements Movable{
     @Override
     public void paintObject(Graphics g, Dimension d) {
         Graphics2D graphics2D = (Graphics2D) g;
+
+        if(velX >= 0){
+            setSprite(rightRun);
+        }else
+            setSprite(leftRun);
 
         g.drawImage(getSprite(),(int)(getX()*d.width), (int)(getY()*d.height),
                 (int)(getWidth()*d.width), (int)(getHeight()*d.height),null);

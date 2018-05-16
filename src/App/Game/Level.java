@@ -14,8 +14,11 @@ public class Level {
     private ArrayList<GameObject> gameObjects = new ArrayList<>();
     private int levelNumber;
 
-    public Level(){}
+    public Level(){ }
 
+    public void init (){
+        gameObjects.forEach(GameObject::init);
+    }
     /**
      * Indicates if the goal has been reached
      * @return

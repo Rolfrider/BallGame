@@ -10,8 +10,10 @@ import java.awt.geom.Rectangle2D;
  */
 public class Goal extends GameObject {
 
-    public Goal(){
-        setSpriteID("src/Config/Resources/door.png");
+    public Goal(){}
+
+    @Override
+    public void init() {
         setSprite(SpriteLoader.loadSprite(getSpriteID()));
     }
 
@@ -32,7 +34,10 @@ public class Goal extends GameObject {
      */
     @Override
     public Rectangle2D.Double getShape() {
-        return new Rectangle2D.Double(getX(),getY(),getWidth(),getHeight());
+        double verticalFrame = getHeight()*0.02;
+        double horizontalFrame = getWidth()*0.02;
+        return new Rectangle2D.Double(getX()+ horizontalFrame,getY()+ verticalFrame
+                ,getWidth()- horizontalFrame,getHeight()- verticalFrame);
     }
 
     /**

@@ -14,9 +14,12 @@ import java.io.File;
 public class Obstacle extends GameObject {
 
     protected Color fillColor = Color.RED;
+    private final double spriteSize = 0.03;
 
-    public Obstacle(){
-        setSpriteID("src/Config/Resources/brick_wall.gif");
+    public Obstacle(){}
+
+    @Override
+    public void init() {
         setSprite(SpriteLoader.loadSprite(getSpriteID()));
     }
 
@@ -43,8 +46,16 @@ public class Obstacle extends GameObject {
 //        graphics2D.setColor(fillColor);
 //        graphics2D.fillRect((int)(getX()*d.width), (int)(getY()*d.height),
 //                (int)(getWidth()*d.width), (int)(getHeight()*d.height));
-        g.drawImage(getSprite(),(int)(getX()*d.width), (int)(getY()*d.height),
-                (int)(getWidth()*d.width), (int)(getHeight()*d.height),null);
+        for (double i = 0; i < getWidth(); i = i + spriteSize) {
+            g.drawImage(getSprite(),(int)((getX()+ i)*d.width), (int)(getY()*d.height),
+                    (int)(spriteSize*d.width), (int)(spriteSize*d.height),null);
+        }
+        for (double i = 0; i < getHeight(); i = i + spriteSize) {
+            g.drawImage(getSprite(),(int)(getX()*d.width), (int)((getY()+ i)*d.height),
+                    (int)(spriteSize*d.width), (int)(spriteSize*d.height),null);
+        }
+//        g.drawImage(getSprite(),(int)(getX()*d.width), (int)(getY()*d.height),
+//                (int)(getWidth()*d.width), (int)(getHeight()*d.height),null);
 
     }
 

@@ -34,6 +34,8 @@ public abstract class GameObject {
      */
     public abstract void paintObject(Graphics g, Dimension d);
 
+    public void init(){}
+
     //Getters and Setters
     public abstract Shape getShape();
 

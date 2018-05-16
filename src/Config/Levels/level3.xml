@@ -7,6 +7,9 @@
      <void property="height">
       <double>0.03</double>
      </void>
+     <void property="spriteID">
+      <string>src/Config/Resources/brick_wall.gif</string>
+     </void>
      <void property="velY">
       <double>0.005</double>
      </void>
@@ -24,16 +27,19 @@
    <void method="add">
     <object class="App.Game.Goal" id="Goal0">
      <void property="height">
-      <double>0.08</double>
+      <double>0.16</double>
      </void>
      <void property="width">
-      <double>0.08</double>
+      <double>0.16</double>
      </void>
      <void property="x">
       <double>0.07</double>
      </void>
      <void property="y">
       <double>0.57</double>
+     </void>
+     <void property="spriteID">
+      <string>src/Config/Resources/door.png</string>
      </void>
     </object>
    </void>
@@ -43,7 +49,7 @@
       <double>0.001</double>
      </void>
      <void property="height">
-      <double>0.08</double>
+      <double>0.16</double>
      </void>
      <void property="playerColor">
       <object class="java.awt.Color">
@@ -53,11 +59,14 @@
        <int>255</int>
       </object>
      </void>
+     <void property="spriteID">
+      <string>src/Config/Resources/batman_</string>
+     </void>
      <void property="width">
-      <double>0.08</double>
+      <double>0.16</double>
      </void>
      <void property="x">
-      <double>0.87</double>
+      <double>0.74</double>
      </void>
      <void property="y">
       <double>0.27</double>
@@ -69,6 +78,9 @@
      <void property="height">
       <double>0.03</double>
      </void>
+     <void property="spriteID">
+      <string>src/Config/Resources/brick_wall.gif</string>
+     </void>
      <void property="width">
       <double>1.0</double>
      </void>
@@ -78,6 +90,9 @@
     <object class="App.Game.Obstacle">
      <void property="height">
       <double>1.0</double>
+     </void>
+     <void property="spriteID">
+      <string>src/Config/Resources/brick_wall.gif</string>
      </void>
      <void property="width">
       <double>0.03</double>
@@ -88,6 +103,9 @@
     <object class="App.Game.Obstacle">
      <void property="height">
       <double>1.0</double>
+     </void>
+     <void property="spriteID">
+      <string>src/Config/Resources/brick_wall.gif</string>
      </void>
      <void property="width">
       <double>0.03</double>
@@ -102,6 +120,9 @@
      <void property="height">
       <double>0.03</double>
      </void>
+     <void property="spriteID">
+      <string>src/Config/Resources/brick_wall.gif</string>
+     </void>
      <void property="width">
       <double>1.0</double>
      </void>
@@ -114,6 +135,9 @@
     <object class="App.Game.Obstacle">
      <void property="height">
       <double>0.03</double>
+     </void>
+     <void property="spriteID">
+      <string>src/Config/Resources/brick_wall.gif</string>
      </void>
      <void property="width">
       <double>0.3</double>
@@ -130,6 +154,9 @@
     <object class="App.Game.Obstacle">
      <void property="height">
       <double>0.03</double>
+     </void>
+     <void property="spriteID">
+      <string>src/Config/Resources/brick_wall.gif</string>
      </void>
      <void property="width">
       <double>0.3</double>

@@ -17,7 +17,7 @@ public class TestGameClasses {
 
     public static void main(String[] args) {
         TestGameClasses tgc = new TestGameClasses();
-        tgc.encodingTest();
+        tgc.decodingTest();
 
     }
 
@@ -33,7 +33,7 @@ public class TestGameClasses {
 
         System.out.println(level.getGameObjects().get(0).getHeight());
         System.out.println(level.getGameObjects().get(2).getX());
-        System.out.println(level.getMovingObstacles().get(0).getWidth());
+
 
     }
 
