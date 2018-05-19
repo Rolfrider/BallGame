@@ -1,31 +1,53 @@
-package App.Windows;
+package App.Client.Windows;
 
-import App.WindowManager;
+import App.Client.Client;
+import App.Client.WindowManager;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Properties;
 
-public class GameOverWindow extends JPanel {
+public class ScoreboardWindow extends JPanel {
     private WindowManager windowParent;
     private ArrayList<JButton> buttons = new ArrayList<>();
-    private JLabel gameOverLabel ;
-    private  JLabel scoreLabel ;
-    private int score;
+    private JLabel optionsLabel ;
+    private ArrayList<JLabel> scoreLabel = new ArrayList<>();
+    private ArrayList<String> scores = new ArrayList<>();
+    private ArrayList<String> names = new ArrayList<>();
 
-    public GameOverWindow(WindowManager windowParent, int score) {
+    public ScoreboardWindow(WindowManager windowParent){
         super();
         this.windowParent = windowParent;
-        this.score = score;
 
         setBackground(Color.BLACK);
         setLayout(new GridBagLayout());
+
+
+        Properties properties = Client.getScores();
+        if(properties != null) {
+            properties.forEach((key, value) -> {
+                names.add((String) key);
+                scores.add((String) value);
+            });
+        }else {
+            windowParent.dialog("Could not get scores form the server.");
+        }
+
+
+
+
+        Arrays.asList("jbutton,lhamilton,pmaldonado,fmassa,nrosberg".split(","))
+                .forEach(a -> names.add(a));
+        Arrays.asList("2000,1800,1600,1400,1000".split(","))
+                .forEach(a -> scores.add(a));
+
 
         initButtons();
         initLabel();
         placeComponents();
     }
-
     private void placeComponents() {
         GridBagConstraints bagConstraints = new GridBagConstraints();
         /* How to understand what is happening here :
@@ -39,27 +61,32 @@ public class GameOverWindow extends JPanel {
         bagConstraints.weighty = 1.0;
         bagConstraints.anchor = GridBagConstraints.PAGE_START;
 
-        add(gameOverLabel, bagConstraints);
+        add(optionsLabel, bagConstraints);
 
+        int k = 3;
         //Other components setup
-        bagConstraints.gridy = 3;
+        bagConstraints.gridy = k++;
         bagConstraints.gridheight = 1;
         bagConstraints.anchor = GridBagConstraints.CENTER;
 
-        add(scoreLabel,bagConstraints);
+        for (JLabel label: scoreLabel) {
+            bagConstraints.gridy = k++;
+            add(label,bagConstraints);
+        }
+        //add(scoreLabel.get(0),bagConstraints);
 
-        bagConstraints.gridy = 4;
+        bagConstraints.gridy = k++;
 
         add(buttons.get(0), bagConstraints);
 
 
-        bagConstraints.gridy = 5;
+        bagConstraints.gridy = k++;
 
         add(buttons.get(1), bagConstraints);
     }
 
     private void initButtons() {
-        buttons.add(new JButton(windowParent.getTextProperties().getProperty("menu label")));
+        buttons.add(new JButton(windowParent.getTextProperties().getProperty("back label")));
         buttons.add(new JButton(windowParent.getTextProperties().getProperty("exit label")));
         buttons.get(0).addActionListener( actionEvent -> windowParent.setWindow(new WelcomeWindow(windowParent)));
         buttons.get(1).addActionListener( actionEvent -> windowParent.exit());
@@ -73,11 +100,15 @@ public class GameOverWindow extends JPanel {
     }
 
     private void initLabel() {
-        gameOverLabel = new JLabel(windowParent.getTextProperties().getProperty("game over label"));
-        gameOverLabel.setForeground(Color.WHITE);
+        optionsLabel = new JLabel(windowParent.getTextProperties().getProperty("scoreboard label"));
+        optionsLabel.setForeground(Color.WHITE);
 
-        scoreLabel =  new JLabel(score + "");
-        scoreLabel.setForeground(Color.RED);
+        for (int i=0; i < names.size(); i++) {
+            scoreLabel.add(new JLabel(names.get(i) + " - " + scores.get(i)));
+            scoreLabel.get(i).setForeground(Color.RED);
+        }
+        /*scoreLabel =  new JLabel(score + "");
+        scoreLabel.setForeground(Color.RED);*/
     }
 
 
@@ -96,9 +127,11 @@ public class GameOverWindow extends JPanel {
         for (JButton b : buttons) {
             b.setFont(new Font(Font.SERIF,Font.ITALIC, fontSize));
         }
-        gameOverLabel.setFont(new Font(Font.SERIF, Font.BOLD, fontSize*3));
-        scoreLabel.setFont(new Font(Font.SERIF, Font.BOLD, fontSize*2));
+        optionsLabel.setFont(new Font(Font.SERIF, Font.BOLD, fontSize*3));
+        for (JLabel label: scoreLabel) {
+            label.setFont(new Font(Font.SERIF, Font.BOLD, fontSize));
+        }
+        //scoreLabel.setFont(new Font(Font.SERIF, Font.BOLD, fontSize*2));
 
     }
-
 }

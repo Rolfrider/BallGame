@@ -1,13 +1,16 @@
 package App.Game;
 
+import App.Config.Configuration;
 import App.Config.LevelLoader;
-import App.WindowManager;
-import App.Windows.GameWindow;
+import App.Client.Windows.GameWindow;
 
 import javax.swing.*;
 import java.awt.*;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Properties;
 
 /**
  * Tool to create new game levels
@@ -16,11 +19,26 @@ public class TestGameClasses {
     LevelLoader levelLoader = new LevelLoader();
 
     public static void main(String[] args) {
-        TestGameClasses tgc = new TestGameClasses();
-        tgc.decodingTest();
+//        TestGameClasses tgc = new TestGameClasses();
+//        tgc.decodingTest();
+//        System.out.println(getPropertyAsString(new Configuration().getScores("scoreboard")));
+        Level level = new LevelLoader().loadLevel(1);
+
 
     }
 
+
+
+
+//    public static String getPropertyAsString(Properties prop) {
+//        StringWriter writer = new StringWriter();
+//        prop.list(new PrintWriter(writer));
+//        String massage = writer.getBuffer().toString();
+//        massage = massage.replace(System.getProperty("line.separator"), " ");
+//        massage = massage.replaceFirst("-- listing properties --", "");
+//        massage = massage.replace("=", " ");
+//        return massage;
+//    }
 
     //Tutorial en/decoding : https://howtodoinjava.com/core-java/serialization/xmlencoder-and-xmldecoder-example/
 

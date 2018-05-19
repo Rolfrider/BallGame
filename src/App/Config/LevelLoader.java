@@ -33,7 +33,6 @@ public class LevelLoader {
         }catch (IOException e){
             System.out.println(e.getMessage());
         }
-        level.init();
         return level;
     }
 

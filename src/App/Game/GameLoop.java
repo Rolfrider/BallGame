@@ -1,6 +1,6 @@
 package App.Game;
 
-import App.Windows.GameWindow;
+import App.Client.Windows.GameWindow;
 
 /**
  * Main game loop

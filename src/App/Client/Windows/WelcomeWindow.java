@@ -1,6 +1,6 @@
-package App.Windows;
+package App.Client.Windows;
 
-import App.WindowManager;
+import App.Client.WindowManager;
 
 import javax.swing.*;
 

@@ -1,17 +1,17 @@
-package App.Windows;
+package App.Client.Windows;
 
 
 
+import App.Client.Client;
 import App.Config.LevelLoader;
 import App.Game.GameLoop;
 import App.Game.HUD;
 import App.Game.KeyInput;
 import App.Game.Level;
-import App.WindowManager;
+import App.Client.WindowManager;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 public class GameWindow extends JPanel {
 
@@ -28,6 +28,7 @@ public class GameWindow extends JPanel {
         setBackground(Color.BLACK);
         gameLoop = new GameLoop(this);
         level = levelLoader.loadLevel(currentLevel);
+        level.init();
         setFocusable(true);
         addKeyListener(new KeyInput(this));
         start();
@@ -40,7 +41,12 @@ public class GameWindow extends JPanel {
         this.windowParent = windowParent;
         setBackground(Color.BLACK);
         gameLoop = new GameLoop(this);
-        level = levelLoader.loadLevel(currentLevel);
+        level = Client.getLevel(currentLevel);
+        if (level == null){
+            windowParent.dialog("Could not load level from server.");
+            level = levelLoader.loadLevel(currentLevel);
+        }
+        level.init();
         setFocusable(true);
         addKeyListener(new KeyInput(this));
         hud = new HUD(currentLevel,
@@ -70,7 +76,12 @@ public class GameWindow extends JPanel {
             gameOver();
         }
 
-        level = levelLoader.loadLevel(currentLevel);
+        level = Client.getLevel(currentLevel);
+        if (level == null){
+            windowParent.dialog("Could not load level from server.");
+            level = levelLoader.loadLevel(currentLevel);
+        }
+        level.init();
         hud.setLevel(currentLevel);
         updateScore();
         gameLoop = new GameLoop(this);
@@ -81,7 +92,12 @@ public class GameWindow extends JPanel {
         hud.setLives(hud.getLives()-1);
         if(hud.getLives() < 0 )
             gameOver();
-        level = levelLoader.loadLevel(currentLevel);
+        level = Client.getLevel(currentLevel);
+        if (level == null){
+            windowParent.dialog("Could not load level from server.");
+            level = levelLoader.loadLevel(currentLevel);
+        }
+        level.init();
         updateScore();
         gameLoop = new GameLoop(this);
         start();

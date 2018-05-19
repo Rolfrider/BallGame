@@ -1,7 +1,7 @@
 package App.Game;
 
 
-import App.Windows.GameWindow;
+import App.Client.Windows.GameWindow;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

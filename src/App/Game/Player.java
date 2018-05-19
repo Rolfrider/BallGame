@@ -42,7 +42,7 @@ public class Player extends GameObject implements Movable{
     }
 
     /**
-     * Moves the player object
+     * Method describing mechanics of player movement
      */
     @Override
     public void move() {

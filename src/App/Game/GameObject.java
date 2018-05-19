@@ -1,5 +1,6 @@
 package App.Game;
 import java.awt.*;
+import java.lang.reflect.Field;
 
 /**
  * Abstract object defining basic game object properties
@@ -34,7 +35,29 @@ public abstract class GameObject {
      */
     public abstract void paintObject(Graphics g, Dimension d);
 
+
+    /**
+     * Used for initialization of images
+     * Loads images to the memory.
+     */
     public void init(){}
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder(200);
+        Field[] fields = getClass().getFields();
+        for (Field f: fields) {
+            f.setAccessible(true);
+            if(!(f.getType() == Image.class)){
+                try{
+                    result.append(f.getName() + " " + f.get(this) + " ");
+                }catch (IllegalAccessException ex){
+                    System.out.println(ex.getMessage());
+                }
+            }
+        }
+        return result.toString();
+    }
 
     //Getters and Setters
     public abstract Shape getShape();

@@ -8,16 +8,16 @@ import java.util.Properties;
 public class Configuration {
     private final String TEXT_PATH = "src/Config/Text/";
     private final String SETTINGS_PATH = "src/Config/settings-config.xml";
+    private final String SCORES_PATH = "src/Config/Scores/";
+
 
     /**
      * Loads configuration from xml file
-     * @param language
-     * @return object containing properties
      */
-    public  Properties getTextConfig(String language){
+    public Properties load(String fileName){
         Properties properties = new Properties();
         try{
-            InputStream iStream = new FileInputStream(TEXT_PATH + language +".xml");
+            InputStream iStream = new FileInputStream(fileName);
             properties.loadFromXML(iStream);
             iStream.close();
         }catch (IOException e) {
@@ -26,21 +26,33 @@ public class Configuration {
         return properties;
     }
 
+
+    /**
+     * Loads configuration from xml file
+     * @param language
+     * @return object containing properties
+     */
+    public Properties getTextConfig(String language){
+
+        return load(TEXT_PATH + language +".xml");
+    }
+
+    /**
+     * Loads scoreboard from xml file
+     * @return object containing properties
+     */
+    public Properties getScores(String fileName){
+        return load(SCORES_PATH + fileName + ".xml");
+    }
+
+
     /**
      * Loads settings from xml file
      * @return object containing properties
      */
     public Properties getSettings(){
-        Properties properties = new Properties();
-        try{
-            InputStream iStream = new FileInputStream(SETTINGS_PATH);
-            properties.loadFromXML(iStream);
-            iStream.close();
-        }catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
 
-        return properties;
+        return load(SETTINGS_PATH);
     }
 
     /**
@@ -71,4 +83,7 @@ public class Configuration {
             System.out.println(e.getMessage());
         }
     }
+
+
+
 }

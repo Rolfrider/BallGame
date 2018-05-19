@@ -1,19 +1,22 @@
-package App.Windows;
+package App.Client.Windows;
 
-import App.WindowManager;
+import App.Client.WindowManager;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class OptionsWindow extends JPanel {
+public class GameOverWindow extends JPanel {
     private WindowManager windowParent;
     private ArrayList<JButton> buttons = new ArrayList<>();
-    private JLabel optionsLabel;
+    private JLabel gameOverLabel ;
+    private  JLabel scoreLabel ;
+    private int score;
 
-    public OptionsWindow(WindowManager windowParent){
+    public GameOverWindow(WindowManager windowParent, int score) {
         super();
         this.windowParent = windowParent;
+        this.score = score;
 
         setBackground(Color.BLACK);
         setLayout(new GridBagLayout());
@@ -22,6 +25,7 @@ public class OptionsWindow extends JPanel {
         initLabel();
         placeComponents();
     }
+
     private void placeComponents() {
         GridBagConstraints bagConstraints = new GridBagConstraints();
         /* How to understand what is happening here :
@@ -35,12 +39,14 @@ public class OptionsWindow extends JPanel {
         bagConstraints.weighty = 1.0;
         bagConstraints.anchor = GridBagConstraints.PAGE_START;
 
-        add(optionsLabel, bagConstraints);
+        add(gameOverLabel, bagConstraints);
 
         //Other components setup
         bagConstraints.gridy = 3;
         bagConstraints.gridheight = 1;
         bagConstraints.anchor = GridBagConstraints.CENTER;
+
+        add(scoreLabel,bagConstraints);
 
         bagConstraints.gridy = 4;
 
@@ -53,7 +59,7 @@ public class OptionsWindow extends JPanel {
     }
 
     private void initButtons() {
-        buttons.add(new JButton(windowParent.getTextProperties().getProperty("back label")));
+        buttons.add(new JButton(windowParent.getTextProperties().getProperty("menu label")));
         buttons.add(new JButton(windowParent.getTextProperties().getProperty("exit label")));
         buttons.get(0).addActionListener( actionEvent -> windowParent.setWindow(new WelcomeWindow(windowParent)));
         buttons.get(1).addActionListener( actionEvent -> windowParent.exit());
@@ -67,9 +73,11 @@ public class OptionsWindow extends JPanel {
     }
 
     private void initLabel() {
-        optionsLabel = new JLabel(windowParent.getTextProperties().getProperty("options label"));
-        optionsLabel.setForeground(Color.WHITE);
+        gameOverLabel = new JLabel(windowParent.getTextProperties().getProperty("game over label"));
+        gameOverLabel.setForeground(Color.WHITE);
 
+        scoreLabel =  new JLabel(score + "");
+        scoreLabel.setForeground(Color.RED);
     }
 
 
@@ -88,6 +96,9 @@ public class OptionsWindow extends JPanel {
         for (JButton b : buttons) {
             b.setFont(new Font(Font.SERIF,Font.ITALIC, fontSize));
         }
-        optionsLabel.setFont(new Font(Font.SERIF, Font.BOLD, fontSize*3));
+        gameOverLabel.setFont(new Font(Font.SERIF, Font.BOLD, fontSize*3));
+        scoreLabel.setFont(new Font(Font.SERIF, Font.BOLD, fontSize*2));
+
     }
+
 }

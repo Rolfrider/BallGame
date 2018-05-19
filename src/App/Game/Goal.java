@@ -40,6 +40,12 @@ public class Goal extends GameObject {
                 ,getWidth()- horizontalFrame,getHeight()- verticalFrame);
     }
 
+    @Override
+    public String toString() {
+        String result = getClass().getName() + " " + super.toString();
+        return result;
+    }
+
     /**
      * Paints goal object
      * @param g graphics

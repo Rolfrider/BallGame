@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>scores properties</comment>
+    <entry key="Vegeta">12000</entry>
+    <entry key="Goku">11999</entry>
+</properties>
