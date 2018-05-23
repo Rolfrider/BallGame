@@ -9,18 +9,13 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.Properties;
 
 public class Server implements Runnable{
 
     private ServerSocket serverSocket;
 
-    private int lastID = -1;
-
     private Configuration configuration = new Configuration();
-
-    private ArrayList<Service> clients = new ArrayList<>();
 
     private static final int port = 40000;// temporary in future move to property
 
@@ -54,12 +49,17 @@ public class Server implements Runnable{
         }
     }
 
-    public synchronized int nextID(){
-        return ++lastID;
-    }
 
     public String getScores(){
         Properties properties = configuration.getScores("scoreboard");
+        String massage = "" + properties.size();
+        massage += getPropertyAsString(properties);
+        return massage;
+    }
+
+
+    public String getConfig() {
+        Properties properties = configuration.getSettings();
         String massage = "" + properties.size();
         massage += getPropertyAsString(properties);
         return massage;
@@ -77,6 +77,7 @@ public class Server implements Runnable{
         massage = massage.replace(System.getProperty("line.separator"), " ");
         massage = massage.replaceFirst("-- listing properties --", "");
         massage = massage.replace("=", " ");
+        System.err.println(massage);
         return massage;
     }
 
@@ -84,14 +85,34 @@ public class Server implements Runnable{
     private synchronized void addClientService(Service clientService)
             throws IOException{
         clientService.init();
-        clients.add(clientService);
         new Thread(clientService).start();
-        System.out.println("Add Client " + (lastID + 1) );
+        System.out.println("Add new client");
     }
 
-    public synchronized  void removeClientService(Service clientService){
-        clients.remove(clientService);
-        clientService.close();
-        System.out.println("Removed Client " + lastID-- );
+    public synchronized boolean updateScores(String username, int score){
+        Properties scores = configuration.getScores("scoreboard");
+        if (scores.size() < 6){
+            scores.put(username, score + "");
+            configuration.saveScores(scores, "scoreboard");
+            return true;
+        }else {
+            for (String key : scores.stringPropertyNames()) {
+                if (score > Integer.parseInt((String) scores.get(key))) {
+                    scores.remove(key);
+                    scores.put(username, score + "");
+                    configuration.saveScores(scores, "scoreboard");
+                    return true;
+                }
+            }
+        }
+        return false;
     }
+
+
+    public synchronized  void removeClientService(Service clientService){
+
+        clientService.close();
+        System.out.println("Removed client");
+    }
+
 }

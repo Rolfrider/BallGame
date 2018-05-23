@@ -71,7 +71,7 @@ public class GameWindow extends JPanel {
 
     public void levelUp(){
         currentLevel++;
-        if(currentLevel > Integer.parseInt((String) windowParent.getSettingsProperties().get("max level"))){
+        if(currentLevel > Integer.parseInt((String) windowParent.getSettingsProperties().get("max_level"))){
             currentLevel--;
             gameOver();
         }

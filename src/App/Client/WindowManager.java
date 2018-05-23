@@ -1,7 +1,7 @@
 package App.Client;
 
 
-// TODO : wczytywanie z pliku jak serwer zwróci null, sortowanie przed wyswietleniem
+
 
 
 import App.Config.Configuration;
@@ -17,21 +17,23 @@ public class WindowManager extends JFrame {
     private Properties textProperties;
     private Properties settingsProperties;
     private String username;
-    private Client client;
 
     /**
      * Manages windows and their funcionalities
      */
     public WindowManager(){
         super("Ball game");
-        settingsProperties = config.getSettings();
+        settingsProperties = Client.getConfig();
+        if(settingsProperties == null){
+            dialog("Can not download configuration from server. Local config will be used instead");
+            settingsProperties = config.getSettings();
+        }
         textProperties = config.getTextConfig(settingsProperties.getProperty("language"));
         JPanel panel = new WelcomeWindow(this);
         add(panel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setVisible(true);
-        username = usernameDialog();
     }
 
     public String usernameDialog(){
@@ -71,9 +73,7 @@ public class WindowManager extends JFrame {
         System.exit(0);
     }
 
-    public Client getClient() {
-        return client;
-    }
+
 
     public void setWindow(JPanel panel){
         getContentPane().removeAll();

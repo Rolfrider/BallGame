@@ -1,5 +1,6 @@
 package App.Client.Windows;
 
+import App.Client.Client;
 import App.Client.WindowManager;
 
 import javax.swing.*;
@@ -24,6 +25,11 @@ public class GameOverWindow extends JPanel {
         initButtons();
         initLabel();
         placeComponents();
+        if(Client.postScore(windowParent.usernameDialog(), score)){
+            windowParent.dialog("Successfully added your score to the server scoreboard");
+        }else {
+            windowParent.dialog("Your score could not have been added to the server scoreboard");
+        }
     }
 
     private void placeComponents() {

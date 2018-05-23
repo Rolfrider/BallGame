@@ -11,9 +11,6 @@ import java.util.StringTokenizer;
 
 public class Service implements Runnable {
 
-    private int id;
-
-    private String username;
 
     private Socket clientSocket;
 
@@ -41,7 +38,7 @@ public class Service implements Runnable {
             input.close();
             clientSocket.close();
         } catch (IOException e) {
-            System.err.println("Error closing client (" + id + ").");
+            System.err.println("Error closing client.");
         } finally {
             output = null;
             input = null;
@@ -51,32 +48,25 @@ public class Service implements Runnable {
 
     @Override
     public void run() {
-        while (true){
             String request = receive();
             System.out.println(request);
             StringTokenizer st = new StringTokenizer(request);
             String command = st.nextToken();
-            if(command.equals(NetProtocol.LOGIN)){
-                send(NetProtocol.LOGGEDIN + " " + (id = server.nextID()));
-            } else if(command.equals(NetProtocol.GETSCORES)){
+            if(command.equals(NetProtocol.GETSCORES)){
                 send(NetProtocol.SCORES + " " +
                         server.getScores());
-            }else if(command.equals(NetProtocol.GETLEVEL)){
+            }else if(command.equals(NetProtocol.GETLEVEL)) {
                 send(NetProtocol.LEVEL);
                 sendLevel(server.getLevel(Integer.parseInt(st.nextToken())));
-                break;
-            }else if(command.equals(NetProtocol.LOGOUT)){
-                send(NetProtocol.LOGGEDOUT);
-                break;
-            }else if(command.equals(NetProtocol.STOPPED)){
-                break;
-            } else if(command.equals(NetProtocol.STOPPED)){
-                break;
-            } else if(command.equals(NetProtocol.NULLCOMMAND)){
-                break;
+            } else if(command.equals(NetProtocol.POSTSCORE)){
+                send(NetProtocol.SCOREUPDATED + " "
+                        + server.updateScores(st.nextToken(), Integer.parseInt(st.nextToken())));
+            } else if(command.equals(NetProtocol.GETCONFIG)){
+                send(NetProtocol.CONFIG + " " +
+                server.getConfig());
             }
 
-        }
+
 
         server.removeClientService(this);
     }
@@ -85,10 +75,10 @@ public class Service implements Runnable {
         try {
             return input.readLine();
         } catch (IOException e) {
-            System.err.println("Error reading client (" + id + ").");
+            System.err.println("Error reading client.");
             System.err.println(e.getMessage());
         }
-        return NetProtocol.NULLCOMMAND;
+        return null;
     }
 
     void sendLevel(Level level){
@@ -111,11 +101,4 @@ public class Service implements Runnable {
         output.println(command);
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
 }

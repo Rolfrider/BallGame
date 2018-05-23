@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Properties;
 
+// TODO : wczytywanie z pliku jak serwer zwróci null, sortowanie przed wyswietleniem
+
 public class ScoreboardWindow extends JPanel {
     private WindowManager windowParent;
     private ArrayList<JButton> buttons = new ArrayList<>();

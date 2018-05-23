@@ -29,31 +29,15 @@ public class Client {
                 .getInputStream()));
         PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
 
-        output.println(NetProtocol.LOGIN);
+        output.println(command);
 
-        StringTokenizer st = new StringTokenizer(input.readLine());
+        answer = input.readLine();
 
-        String massage = st.nextToken();
+        input.close();
+        output.close();
+        socket.close();
 
-        if (massage.equals(NetProtocol.LOGGEDIN)) {
-            System.out.println("Successfully logged in with " + st.nextToken() + " id.");
-            output.println(command);
-            answer = input.readLine();
-            output.println(NetProtocol.LOGOUT);
-
-            input.close();
-            output.close();
-            socket.close();
-
-            return answer;
-        } else {
-
-            input.close();
-            output.close();
-            socket.close();
-
-            throw new Exception("Unexpected error while connecting to the server");
-        }
+        return answer;
     }
 
     public static Level getLevel(int num){
@@ -64,31 +48,21 @@ public class Client {
             BufferedReader input = new BufferedReader(new InputStreamReader(socket
                     .getInputStream()));
             PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
-            output.println(NetProtocol.LOGIN);
 
-            StringTokenizer st = new StringTokenizer(input.readLine());
+            output.println(NetProtocol.GETLEVEL + " " + num);
 
-            String massage = st.nextToken();
-
-            if (massage.equals(NetProtocol.LOGGEDIN)) {
-                System.out.println("Successfully logged in with " + st.nextToken() + " id.");
-                output.println(NetProtocol.GETLEVEL + " " + num);
-                if(input.readLine().equals(NetProtocol.LEVEL)) {
-                    XMLDecoder decoder = new XMLDecoder(socket.getInputStream());
-                    level = (Level) decoder.readObject();
-                    decoder.close();
-                }
-                input.close();
-                output.close();
-                socket.close();
-
-            } else {
-                input.close();
-                output.close();
-                socket.close();
+            if(input.readLine().equals(NetProtocol.LEVEL)) {
+                XMLDecoder decoder = new XMLDecoder(socket.getInputStream());
+                level = (Level) decoder.readObject();
+                decoder.close();
             }
+
+            input.close();
+            output.close();
+            socket.close();
+
         }catch (IOException ex){
-            System.out.println(ex.getMessage());
+            System.err.println(ex.getMessage());
         }
 
         return level;
@@ -107,7 +81,44 @@ public class Client {
                 }
             }
         }catch (Exception ex){
-            System.out.println(ex.getMessage());
+            System.err.println(ex.getMessage());
+            return null;
+        }
+
+        return properties;
+    }
+
+    public static boolean postScore(String username, int score){
+        String answer;
+        boolean updated = false;
+        try {
+            answer = connect(NetProtocol.POSTSCORE + " " +
+            username + " " + score);
+            StringTokenizer st = new StringTokenizer(answer);
+            if(st.nextToken().equals(NetProtocol.SCOREUPDATED)){
+                updated = Boolean.parseBoolean(st.nextToken());
+            }
+        }catch (Exception ex){
+            System.err.println(ex.getMessage());
+            return false;
+        }
+        return updated;
+    }
+
+    public static Properties getConfig(){
+        Properties properties = new Properties();
+        String answer;
+        try {
+            answer = connect(NetProtocol.GETCONFIG);
+            StringTokenizer st = new StringTokenizer(answer);
+            if(st.nextToken().equals(NetProtocol.CONFIG)){
+                int num = Integer.parseInt(st.nextToken());
+                for (int i = 0; i < num; i++) {
+                    properties.put(st.nextToken(), st.nextToken());
+                }
+            }
+        }catch (Exception ex){
+            System.err.println(ex.getMessage());
             return null;
         }
 
