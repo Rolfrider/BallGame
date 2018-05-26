@@ -22,7 +22,10 @@ public class TestGameClasses {
 //        TestGameClasses tgc = new TestGameClasses();
 //        tgc.decodingTest();
 //        System.out.println(getPropertyAsString(new Configuration().getScores("scoreboard")));
-        Level level = new LevelLoader().loadLevel(1);
+        Configuration config = new Configuration();
+        Properties properties = new Properties();
+        System.out.println(properties.toString());
+        config.save(properties, "plik.xml");
 
 
     }
@@ -99,7 +102,7 @@ public class TestGameClasses {
 
 
         //Uncomment to save the lvl
-        levelLoader.saveLevel(level);
+        //levelLoader.saveLevel(level);
 
 
 

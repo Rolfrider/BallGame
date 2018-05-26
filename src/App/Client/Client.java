@@ -1,5 +1,6 @@
 package App.Client;
 
+import App.Config.Configuration;
 import App.Config.NetProtocol;
 import App.Game.Level;
 
@@ -14,16 +15,34 @@ import java.util.StringTokenizer;
 
 public class Client {
 
-    private static final int port = 40000;
+    private static int port;
 
-    private static final String HOST = "192.168.1.13";
+    private static String host;
 
-    private static final int timeout = 10000;
+    private static int timeout;
 
 
+    /**
+     * Initialize values: host, port and timeout
+     */
+    private static void init(){
+        Properties properties = new Configuration().getClientConfig();
+        port = Integer.parseInt((String) properties.get("port"));
+        host = (String) properties.get("host");
+        timeout = Integer.parseInt((String) properties.get("timeout"));
+    }
+
+
+    /**
+     * Connects to a server, sends command, picks up an answer
+     * @param command command send to a server
+     * @return Server answer as a one line String
+     * @throws Exception
+     */
     public static String connect(String command) throws Exception {
+        init();
         String answer;
-        Socket socket = new Socket(HOST, port);
+        Socket socket = new Socket(host, port);
         socket.setSoTimeout(timeout);
         BufferedReader input = new BufferedReader(new InputStreamReader(socket
                 .getInputStream()));
@@ -40,10 +59,16 @@ public class Client {
         return answer;
     }
 
+    /**
+     * Connects to server and asks for a level data
+     * @param num number of asked level
+     * @return Level object, null if connection was unsuccessful
+     */
     public static Level getLevel(int num){
+        init();
         Level level = null;
         try {
-            Socket socket = new Socket(HOST, port);
+            Socket socket = new Socket(host, port);
             socket.setSoTimeout(timeout);
             BufferedReader input = new BufferedReader(new InputStreamReader(socket
                     .getInputStream()));
@@ -68,6 +93,10 @@ public class Client {
         return level;
     }
 
+    /**
+     * Creates get_score command and parses server answer to Properties
+     * @return Properties containing scores
+     */
     public static Properties getScores(){
         Properties properties = new Properties();
         String answer;
@@ -88,6 +117,12 @@ public class Client {
         return properties;
     }
 
+    /**
+     * Creates post command and parses server response
+     * @param username
+     * @param score
+     * @return true if score has been added to scoreboard
+     */
     public static boolean postScore(String username, int score){
         String answer;
         boolean updated = false;
@@ -105,6 +140,10 @@ public class Client {
         return updated;
     }
 
+    /**
+     * Creates get_config command and parses server response to Properties
+     * @return Properties containing configuration
+     */
     public static Properties getConfig(){
         Properties properties = new Properties();
         String answer;

@@ -13,6 +13,7 @@ public class Configuration {
 
     /**
      * Loads configuration from xml file
+     * @param filename filename to read from
      */
     public Properties load(String filename){
         Properties properties = new Properties();
@@ -26,6 +27,11 @@ public class Configuration {
         return properties;
     }
 
+    /**
+     * Saves properties to xml file
+     * @param properties properties to save
+     * @param filename
+     */
     public void save(Properties properties,String filename){
         try{
             OutputStream oStream = new FileOutputStream(filename);
@@ -55,6 +61,13 @@ public class Configuration {
         return load(SCORES_PATH + filename + ".xml");
     }
 
+    /**
+     * Loads client configuration from xml file
+     * @return object containing properties
+     */
+    public Properties getClientConfig(){
+        return load(SETTINGS_PATH + "client-config.xml");
+    }
 
     /**
      * Loads settings from xml file
@@ -82,7 +95,11 @@ public class Configuration {
         save(properties, TEXT_PATH + "english.xml");
     }
 
-
+    /**
+     * Saves scores to xml file
+     * @param scores
+     * @param filename
+     */
     public void saveScores(Properties scores, String filename) {
         save(scores, SCORES_PATH + filename + ".xml");
     }

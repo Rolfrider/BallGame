@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>text properties</comment>
+    <entry key="play label">Graj</entry>
+    <entry key="options label">Opcje</entry>
+    <entry key="exit label">Wyjście</entry>
+    <entry key="level label">Poziom</entry>
+    <entry key="easy level">Łatwy</entry>
+    <entry key="menu label">Główne menu</entry>
+    <entry key="game over label">Koniec Gry</entry>
+    <entry key="medium level">Średni</entry>
+    <entry key="hard level">Trudny</entry>
+    <entry key="game title">Gra Piłka</entry>
+    <entry key="scoreboard label">Wyniki</entry>
+    <entry key="back label">Powrót</entry>
+    <entry key="dialog title">Dialog-nazwa użytkownika</entry>
+    <entry key="dialog question">Nazwa użytkownika: </entry>
+</properties>
