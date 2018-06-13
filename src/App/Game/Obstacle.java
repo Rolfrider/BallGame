@@ -43,19 +43,16 @@ public class Obstacle extends GameObject {
     @Override
     public void paintObject(Graphics g, Dimension d) {
         Graphics2D graphics2D = (Graphics2D) g;
-//        graphics2D.setColor(fillColor);
-//        graphics2D.fillRect((int)(getX()*d.width), (int)(getY()*d.height),
-//                (int)(getWidth()*d.width), (int)(getHeight()*d.height));
         for (double i = 0; i < getWidth(); i = i + spriteSize) {
             g.drawImage(getSprite(),(int)((getX()+ i)*d.width), (int)(getY()*d.height),
                     (int)(spriteSize*d.width), (int)(spriteSize*d.height),null);
+            for (double v = 0; v < getHeight(); v = v + spriteSize) {
+                g.drawImage(getSprite(),(int)(getX()*d.width), (int)((getY()+ v)*d.height),
+                        (int)(spriteSize*d.width), (int)(spriteSize*d.height),null);
+            }
         }
-        for (double i = 0; i < getHeight(); i = i + spriteSize) {
-            g.drawImage(getSprite(),(int)(getX()*d.width), (int)((getY()+ i)*d.height),
-                    (int)(spriteSize*d.width), (int)(spriteSize*d.height),null);
-        }
-//        g.drawImage(getSprite(),(int)(getX()*d.width), (int)(getY()*d.height),
-//                (int)(getWidth()*d.width), (int)(getHeight()*d.height),null);
+
+
 
     }
 

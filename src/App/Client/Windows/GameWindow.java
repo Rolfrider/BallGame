@@ -58,10 +58,14 @@ public class GameWindow extends JPanel {
 
 
     public void pauseOrResume(){
-        if(gameLoop.isPause())
+        if(gameLoop.isPause()) {
             gameLoop.resume();
-        else
+            hud.setPaused(false);
+        }else {
             gameLoop.pause();
+            hud.setPaused(true);
+            repaint();
+        }
     }
 
     public void updateScore(){
