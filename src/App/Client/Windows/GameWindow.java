@@ -23,16 +23,6 @@ public class GameWindow extends JPanel {
     private WindowManager windowParent; // A JFrame
 
 
-    public GameWindow(){
-        super();
-        setBackground(Color.BLACK);
-        gameLoop = new GameLoop(this);
-        level = levelLoader.loadLevel(currentLevel);
-        level.init();
-        setFocusable(true);
-        addKeyListener(new KeyInput(this));
-        start();
-    }
 
 
 
@@ -74,6 +64,7 @@ public class GameWindow extends JPanel {
     }
 
     public void levelUp(){
+        hud.setPaused(true);
         currentLevel++;
         if(currentLevel > Integer.parseInt((String) windowParent.getSettingsProperties().get("max_level"))){
             currentLevel--;
@@ -90,10 +81,12 @@ public class GameWindow extends JPanel {
         hud.setLevel(currentLevel);
         updateScore();
         gameLoop = new GameLoop(this);
+
         start();
     }
 
     public void die(){
+        hud.setPaused(true);
         hud.setLives(hud.getLives()-1);
         if(hud.getLives() < 0 )
             gameOver();
@@ -105,6 +98,7 @@ public class GameWindow extends JPanel {
         level.init();
         updateScore();
         gameLoop = new GameLoop(this);
+
         start();
     }
 
@@ -141,4 +135,5 @@ public class GameWindow extends JPanel {
     public void setLevel(Level level) {
         this.level = level;
     }
+
 }

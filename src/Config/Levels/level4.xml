@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="9.0.1" class="java.beans.XMLDecoder">
+ <object class="App.Game.Level" id="Level0">
+  <void property="gameObjects">
+   <void method="add">
+    <object class="App.Game.MovingObstacle" id="MovingObstacle0">
+     <void property="height">
+      <double>0.03</double>
+     </void>
+     <void property="spriteID">
+      <string>src/Config/Resources/brick_wall.gif</string>
+     </void>
+     <void property="velX">
+      <double>-0.005</double>
+     </void>
+     <void property="velY">
+      <double>0.005</double>
+     </void>
+     <void property="width">
+      <double>0.03</double>
+     </void>
+     <void property="x">
+      <double>0.48</double>
+     </void>
+     <void property="y">
+      <double>0.40</double>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="App.Game.MovingObstacle" id="MovingObstacle1">
+     <void property="height">
+      <double>0.03</double>
+     </void>
+     <void property="spriteID">
+      <string>src/Config/Resources/brick_wall.gif</string>
+     </void>
+     <void property="velX">
+      <double>0.005</double>
+     </void>
+     <void property="velY">
+      <double>0.005</double>
+     </void>
+     <void property="width">
+      <double>0.03</double>
+     </void>
+     <void property="x">
+      <double>0.42</double>
+     </void>
+     <void property="y">
+      <double>0.23</double>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="App.Game.MovingObstacle" id="MovingObstacle2">
+     <void property="height">
+      <double>0.03</double>
+     </void>
+     <void property="spriteID">
+      <string>src/Config/Resources/brick_wall.gif</string>
+     </void>
+     <void property="velX">
+      <double>0.005</double>
+     </void>
+     <void property="velY">
+      <double>-0.005</double>
+     </void>
+     <void property="width">
+      <double>0.03</double>
+     </void>
+     <void property="x">
+      <double>0.28</double>
+     </void>
+     <void property="y">
+      <double>0.83</double>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="App.Game.MovingObstacle" id="MovingObstacle3">
+     <void property="height">
+      <double>0.03</double>
+     </void>
+     <void property="spriteID">
+      <string>src/Config/Resources/brick_wall.gif</string>
+     </void>
+     <void property="velX">
+      <double>0.005</double>
+     </void>
+     <void property="velY">
+      <double>-0.005</double>
+     </void>
+     <void property="width">
+      <double>0.03</double>
+     </void>
+     <void property="x">
+      <double>0.68</double>
+     </void>
+     <void property="y">
+      <double>0.73</double>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="App.Game.Goal" id="Goal0">
+     <void property="height">
+      <double>0.16</double>
+     </void>
+     <void property="spriteID">
+      <string>src/Config/Resources/door.png</string>
+     </void>
+     <void property="width">
+      <double>0.16</double>
+     </void>
+     <void property="x">
+      <double>0.77</double>
+     </void>
+     <void property="y">
+      <double>0.77</double>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="App.Game.Player" id="Player0">
+     <void property="gravityY">
+      <double>0.001</double>
+     </void>
+     <void property="height">
+      <double>0.16</double>
+     </void>
+     <void property="playerColor">
+      <object class="java.awt.Color">
+       <int>128</int>
+       <int>128</int>
+       <int>128</int>
+       <int>255</int>
+      </object>
+     </void>
+     <void property="spriteID">
+      <string>src/Config/Resources/batman_</string>
+     </void>
+     <void property="width">
+      <double>0.16</double>
+     </void>
+     <void property="x">
+      <double>0.07</double>
+     </void>
+     <void property="y">
+      <double>0.17</double>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="App.Game.Obstacle">
+     <void property="height">
+      <double>0.03</double>
+     </void>
+     <void property="spriteID">
+      <string>src/Config/Resources/brick_wall.gif</string>
+     </void>
+     <void property="width">
+      <double>1.0</double>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="App.Game.Obstacle">
+     <void property="height">
+      <double>1.0</double>
+     </void>
+     <void property="spriteID">
+      <string>src/Config/Resources/brick_wall.gif</string>
+     </void>
+     <void property="width">
+      <double>0.03</double>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="App.Game.Obstacle">
+     <void property="height">
+      <double>1.0</double>
+     </void>
+     <void property="spriteID">
+      <string>src/Config/Resources/brick_wall.gif</string>
+     </void>
+     <void property="width">
+      <double>0.03</double>
+     </void>
+     <void property="x">
+      <double>0.97</double>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="App.Game.Obstacle">
+     <void property="height">
+      <double>0.03</double>
+     </void>
+     <void property="spriteID">
+      <string>src/Config/Resources/brick_wall.gif</string>
+     </void>
+     <void property="width">
+      <double>1.0</double>
+     </void>
+     <void property="y">
+      <double>0.97</double>
+     </void>
+    </object>
+   </void>
+  </void>
+  <void property="goal">
+   <object idref="Goal0"/>
+  </void>
+  <void property="levelNumber">
+   <int>4</int>
+  </void>
+  <void property="movingObstacles">
+   <void method="add">
+    <object idref="MovingObstacle0"/>
+   </void>
+   <void method="add">
+    <object idref="MovingObstacle1"/>
+   </void>
+   <void method="add">
+    <object idref="MovingObstacle2"/>
+   </void>
+   <void method="add">
+    <object idref="MovingObstacle3"/>
+   </void>
+  </void>
+  <void property="player">
+   <object idref="Player0"/>
+  </void>
+ </object>
+</java>

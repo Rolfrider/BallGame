@@ -7,20 +7,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class GameOverWindow extends JPanel {
-    private WindowManager windowParent;
+public class GameOverWindow extends CustomWindow {
     private ArrayList<JButton> buttons = new ArrayList<>();
     private JLabel gameOverLabel ;
     private  JLabel scoreLabel ;
     private int score;
 
     public GameOverWindow(WindowManager windowParent, int score) {
-        super();
-        this.windowParent = windowParent;
+        super(windowParent);
         this.score = score;
 
-        setBackground(Color.BLACK);
-        setLayout(new GridBagLayout());
 
         initButtons();
         initLabel();
@@ -30,9 +26,10 @@ public class GameOverWindow extends JPanel {
         }else {
             windowParent.dialog("Your score could not have been added to the server scoreboard");
         }
+        startRaining();
     }
 
-    private void placeComponents() {
+    protected void placeComponents() {
         GridBagConstraints bagConstraints = new GridBagConstraints();
         /* How to understand what is happening here :
          * https://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html*/
@@ -67,13 +64,17 @@ public class GameOverWindow extends JPanel {
     private void initButtons() {
         buttons.add(new JButton(windowParent.getTextProperties().getProperty("menu label")));
         buttons.add(new JButton(windowParent.getTextProperties().getProperty("exit label")));
-        buttons.get(0).addActionListener( actionEvent -> windowParent.setWindow(new WelcomeWindow(windowParent)));
-        buttons.get(1).addActionListener( actionEvent -> windowParent.exit());
+        buttons.get(0).addActionListener( actionEvent -> {
+            stopRaining();
+            windowParent.setWindow(new WelcomeWindow(windowParent));});
+        buttons.get(1).addActionListener( actionEvent -> {
+            stopRaining();
+            windowParent.exit();});
 
         for (JButton b : buttons) {
-            b.setBackground(Color.BLACK);
             b.setForeground(Color.BLUE);
-            b.setOpaque(true);
+            b.setOpaque(false);
+            b.setContentAreaFilled(false);
             b.setBorderPainted(false);
         }
     }
@@ -96,7 +97,6 @@ public class GameOverWindow extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D graphics2D = (Graphics2D) g;
-        graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
         // Resize the text on buttons
         int fontSize = (getSize().height + getSize().width)/40;
         for (JButton b : buttons) {

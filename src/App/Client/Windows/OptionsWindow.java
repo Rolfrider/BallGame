@@ -6,23 +6,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class OptionsWindow extends JPanel {
-    private WindowManager windowParent;
+public class OptionsWindow extends CustomWindow {
     private ArrayList<JButton> buttons = new ArrayList<>();
     private JLabel optionsLabel;
 
     public OptionsWindow(WindowManager windowParent){
-        super();
-        this.windowParent = windowParent;
-
-        setBackground(Color.BLACK);
-        setLayout(new GridBagLayout());
-
+        super(windowParent);
         initButtons();
         initLabel();
         placeComponents();
+        startRaining();
     }
-    private void placeComponents() {
+    protected void placeComponents() {
         GridBagConstraints bagConstraints = new GridBagConstraints();
         /* How to understand what is happening here :
          * https://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html*/
@@ -55,13 +50,17 @@ public class OptionsWindow extends JPanel {
     private void initButtons() {
         buttons.add(new JButton(windowParent.getTextProperties().getProperty("back label")));
         buttons.add(new JButton(windowParent.getTextProperties().getProperty("exit label")));
-        buttons.get(0).addActionListener( actionEvent -> windowParent.setWindow(new WelcomeWindow(windowParent)));
-        buttons.get(1).addActionListener( actionEvent -> windowParent.exit());
+        buttons.get(0).addActionListener( actionEvent -> {
+            stopRaining();
+            windowParent.setWindow(new WelcomeWindow(windowParent));});
+        buttons.get(1).addActionListener( actionEvent -> {
+            stopRaining();
+            windowParent.exit();});
 
         for (JButton b : buttons) {
-            b.setBackground(Color.BLACK);
             b.setForeground(Color.BLUE);
-            b.setOpaque(true);
+            b.setOpaque(false);
+            b.setContentAreaFilled(false);
             b.setBorderPainted(false);
         }
     }
@@ -82,7 +81,6 @@ public class OptionsWindow extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D graphics2D = (Graphics2D) g;
-        graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
         // Resize the text on buttons
         int fontSize = (getSize().height + getSize().width)/40;
         for (JButton b : buttons) {

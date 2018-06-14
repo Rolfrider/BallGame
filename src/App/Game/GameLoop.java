@@ -111,10 +111,12 @@ public class GameLoop implements Runnable{
             // to this and then factor in the current time to give
             // us our final value to wait for
             // remember this is in ms, whereas our lastLoopTime etc. vars are in ns.
-            try {
-                Thread.sleep( (lastLoopTime-System.nanoTime() + OPTIMAL_TIME)/1000000 );
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            if((lastLoopTime - System.nanoTime() + OPTIMAL_TIME)/1000000 > 0){
+                try {
+                    Thread.sleep((lastLoopTime - System.nanoTime() + OPTIMAL_TIME) / 1000000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

@@ -12,23 +12,16 @@ import java.util.Vector;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class WelcomeWindow extends JPanel {
+public class WelcomeWindow extends CustomWindow {
     private ArrayList<JButton> buttons = new ArrayList<>();
     private JLabel titleLabel ;
     private JLabel levelLabel ;
-    private WindowManager windowParent;
-    private BlockingQueue<RainDrop> rainDrops = new LinkedBlockingQueue<>();
-    private RainController rainController;
+
 
 
 
     public WelcomeWindow(WindowManager windowParent){
-        super();
-        this.windowParent = windowParent;
-
-        setBackground(Color.BLACK);
-        setLayout(new GridBagLayout());
-
+        super(windowParent);
         initButtons();
         initLabel();
         placeComponents();
@@ -36,14 +29,9 @@ public class WelcomeWindow extends JPanel {
 
     }
 
-    private void startRaining(){
-        rainDrops.add(new RainDrop());
-        rainController = new RainController(this, rainDrops);
-        Thread thread = new Thread(rainController);
-        thread.start();
-    }
 
-    private void placeComponents() {
+    @Override
+    protected void placeComponents() {
         GridBagConstraints bagConstraints = new GridBagConstraints();
         /* How to understand what is happening here :
          * https://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html*/
@@ -113,10 +101,18 @@ public class WelcomeWindow extends JPanel {
         buttons.add(new JButton(windowParent.getTextProperties().getProperty("scoreboard label")));
         buttons.add(new JButton(windowParent.getTextProperties().getProperty("options label")));
         buttons.add(new JButton(windowParent.getTextProperties().getProperty("exit label")));
-        buttons.get(0).addActionListener( actionEvent -> windowParent.setWindow(new GameWindow(windowParent)));
-        buttons.get(1).addActionListener( actionEvent -> windowParent.setWindow(new ScoreboardWindow(windowParent)));
-        buttons.get(2).addActionListener( actionEvent -> windowParent.setWindow(new OptionsWindow(windowParent)));
-        buttons.get(3).addActionListener( actionEvent -> windowParent.exit());
+        buttons.get(0).addActionListener( actionEvent -> {
+            stopRaining();
+            windowParent.setWindow(new GameWindow(windowParent));});
+        buttons.get(1).addActionListener( actionEvent -> {
+            stopRaining();
+            windowParent.setWindow(new ScoreboardWindow(windowParent));});
+        buttons.get(2).addActionListener( actionEvent -> {
+            stopRaining();
+            windowParent.setWindow(new OptionsWindow(windowParent));});
+        buttons.get(3).addActionListener( actionEvent -> {
+            stopRaining();
+            windowParent.exit();});
 
         for (JButton b : buttons) {
             b.setForeground(Color.RED);
@@ -137,9 +133,6 @@ public class WelcomeWindow extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D graphics2D = (Graphics2D) g;
-        //graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
-        // Resize the text on button
-        rainDrops.forEach(rainDrop -> rainDrop.paintObject(g, getSize()));
         int fontSize = (getSize().height + getSize().width)/40;
         for (JButton b : buttons) {
             b.setFont(new Font(Font.SERIF,Font.ITALIC, fontSize));

@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.Properties;
 import java.util.StringTokenizer;
@@ -42,8 +43,9 @@ public class Client {
     public static String connect(String command) throws Exception {
         init();
         String answer;
-        Socket socket = new Socket(host, port);
+        Socket socket = new Socket();
         socket.setSoTimeout(timeout);
+        socket.connect(new InetSocketAddress(host,port),timeout);
         BufferedReader input = new BufferedReader(new InputStreamReader(socket
                 .getInputStream()));
         PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
@@ -68,8 +70,9 @@ public class Client {
         init();
         Level level = null;
         try {
-            Socket socket = new Socket(host, port);
+            Socket socket = new Socket();
             socket.setSoTimeout(timeout);
+            socket.connect(new InetSocketAddress(host,port),timeout);
             BufferedReader input = new BufferedReader(new InputStreamReader(socket
                     .getInputStream()));
             PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
