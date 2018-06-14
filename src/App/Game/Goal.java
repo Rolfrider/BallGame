@@ -54,9 +54,6 @@ public class Goal extends GameObject {
     @Override
     public void paintObject(Graphics g, Dimension d) {
         Graphics2D graphics2D = (Graphics2D) g;
-//        graphics2D.setColor(Color.CYAN);
-//        graphics2D.fillRect((int)(getX()*d.width), (int)(getY()*d.height),
-//                (int)(getWidth()*d.width), (int)(getHeight()*d.height));
         g.drawImage(getSprite(),(int)(getX()*d.width), (int)(getY()*d.height),
                 (int)(getWidth()*d.width), (int)(getHeight()*d.height),null);
     }

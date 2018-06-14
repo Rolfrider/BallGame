@@ -78,6 +78,7 @@ public class GameWindow extends JPanel {
         if(currentLevel > Integer.parseInt((String) windowParent.getSettingsProperties().get("max_level"))){
             currentLevel--;
             gameOver();
+            return;
         }
 
         level = Client.getLevel(currentLevel);

@@ -1,17 +1,24 @@
 package App.Client.Windows;
 
+import App.Background.RainController;
+import App.Background.RainDrop;
 import App.Client.WindowManager;
 
 import javax.swing.*;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Vector;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class WelcomeWindow extends JPanel {
     private ArrayList<JButton> buttons = new ArrayList<>();
     private JLabel titleLabel ;
     private JLabel levelLabel ;
     private WindowManager windowParent;
+    private BlockingQueue<RainDrop> rainDrops = new LinkedBlockingQueue<>();
+    private RainController rainController;
 
 
 
@@ -25,7 +32,15 @@ public class WelcomeWindow extends JPanel {
         initButtons();
         initLabel();
         placeComponents();
+        startRaining();
 
+    }
+
+    private void startRaining(){
+        rainDrops.add(new RainDrop());
+        rainController = new RainController(this, rainDrops);
+        Thread thread = new Thread(rainController);
+        thread.start();
     }
 
     private void placeComponents() {
@@ -104,9 +119,9 @@ public class WelcomeWindow extends JPanel {
         buttons.get(3).addActionListener( actionEvent -> windowParent.exit());
 
         for (JButton b : buttons) {
-            b.setBackground(Color.BLACK);
             b.setForeground(Color.RED);
-            b.setOpaque(true);
+            b.setOpaque(false);
+            b.setContentAreaFilled(false);
             b.setBorderPainted(false);
         
         }
@@ -122,8 +137,9 @@ public class WelcomeWindow extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D graphics2D = (Graphics2D) g;
-        graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
-        // Resize the text on buttons 
+        //graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+        // Resize the text on button
+        rainDrops.forEach(rainDrop -> rainDrop.paintObject(g, getSize()));
         int fontSize = (getSize().height + getSize().width)/40;
         for (JButton b : buttons) {
             b.setFont(new Font(Font.SERIF,Font.ITALIC, fontSize));
