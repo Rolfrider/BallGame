@@ -3,6 +3,6 @@
 <properties>
     <comment>settings properties</comment>
     <entry key="port">40000</entry>
-    <entry key="host">192.168.1.21</entry>
+    <entry key="host">192.168.1.5</entry>
     <entry key="timeout">1000</entry>
 </properties>

@@ -8,6 +8,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Properties;
+import java.util.SortedMap;
 
 // TODO : wczytywanie z pliku jak serwer zwróci null, sortowanie przed wyswietleniem
 
@@ -24,20 +25,37 @@ public class ScoreboardWindow extends MenuWindow {
         Properties properties = Client.getScores();
         if(properties != null) {
             properties.forEach((key, value) -> {
-                names.add((String) key);
-                scores.add((String) value);
+                int newScore = Integer.parseInt((String) value);
+                if(scores.size()>0){
+                    for (int i = 0; i < scores.size(); i++) {
+                        if(newScore>Integer.parseInt(scores.get(i))){
+                            names.add(i,(String) key);
+                            scores.add(i,(String) value);
+                            break;
+                        }else if(i+1==scores.size()){
+                            names.add((String) key);
+                            scores.add((String) value);
+                            break;
+                        }
+                    }
+                }
+                else{
+                    names.add((String) key);
+                    scores.add((String) value);
+                }
+
+
             });
         }else {
             windowParent.dialog("Could not get scores form the server.");
+            Arrays.asList("jbutton,lhamilton,pmaldonado,fmassa,nrosberg".split(","))
+                    .forEach(a -> names.add(a));
+            Arrays.asList("2000,1800,1600,1400,1000".split(","))
+                    .forEach(a -> scores.add(a));
         }
 
 
 
-
-        Arrays.asList("jbutton,lhamilton,pmaldonado,fmassa,nrosberg".split(","))
-                .forEach(a -> names.add(a));
-        Arrays.asList("2000,1800,1600,1400,1000".split(","))
-                .forEach(a -> scores.add(a));
         initButtons();
         buttonsLook();
         initLabel();

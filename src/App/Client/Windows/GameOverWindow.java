@@ -22,7 +22,7 @@ public class GameOverWindow extends MenuWindow {
         if(Client.postScore(windowParent.usernameDialog(), score)){
             windowParent.dialog("Successfully added your score to the server scoreboard");
         }else {
-            windowParent.dialog("Your score could not have been added to the server scoreboard");
+            windowParent.dialog("Your score can't be added to the server scoreboard");
         }
         startRaining();
     }

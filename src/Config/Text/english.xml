@@ -16,4 +16,9 @@
     <entry key="back label">Back</entry>
     <entry key="dialog title">Username Dialog</entry>
     <entry key="dialog question">Username:</entry>
+    <entry key="offline">Offline</entry>
+    <entry key="online">Online</entry>
+    <entry key="polish">Polish</entry>
+    <entry key="english">English</entry>
+
 </properties>

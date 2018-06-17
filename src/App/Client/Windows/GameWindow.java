@@ -26,11 +26,7 @@ public class GameWindow extends CustomWindow {
     public GameWindow(WindowManager windowParent){
         super(windowParent);
         gameLoop = new GameLoop(this);
-        level = Client.getLevel(currentLevel);
-        if (level == null){
-            windowParent.dialog("Could not load level from server.");
-            level = levelLoader.loadLevel(currentLevel);
-        }
+        loadLevel();
         level.init();
         setFocusable(true);
         addKeyListener(new KeyInput(this));
@@ -68,12 +64,7 @@ public class GameWindow extends CustomWindow {
             gameOver();
             return;
         }
-
-        level = Client.getLevel(currentLevel);
-        if (level == null){
-            windowParent.dialog("Could not load level from server.");
-            level = levelLoader.loadLevel(currentLevel);
-        }
+        loadLevel();
         level.init();
         hud.setLevel(currentLevel);
         updateScore();
@@ -91,10 +82,7 @@ public class GameWindow extends CustomWindow {
             return;
         }
         level = Client.getLevel(currentLevel);
-        if (level == null){
-            windowParent.dialog("Could not load level from server.");
-            level = levelLoader.loadLevel(currentLevel);
-        }
+        loadLevel();
         level.init();
         updateScore();
         gameLoop = new GameLoop(this);
@@ -111,6 +99,18 @@ public class GameWindow extends CustomWindow {
     private  void start(){
         Thread thread = new Thread(gameLoop);
         thread.start();
+    }
+
+    public void loadLevel(){
+        if(windowParent.getSettingsProperties().getProperty("online").equals("1")){
+            level = Client.getLevel(currentLevel);
+            if (level == null){
+                windowParent.dialog("Could not load level from server.");
+                level = levelLoader.loadLevel(currentLevel);
+            }
+        }else{
+            level = levelLoader.loadLevel(currentLevel);
+        }
     }
 
     @Override

@@ -1,9 +1,5 @@
 package App.Client;
 
-
-
-
-
 import App.Config.Configuration;
 import App.Client.Windows.WelcomeWindow;
 
@@ -16,6 +12,7 @@ public class WindowManager extends JFrame {
     private Configuration config = new Configuration();
     private Properties textProperties;
     private Properties settingsProperties;
+    private Properties scoreboardProperties;
     private String username;
 
     /**
@@ -57,6 +54,10 @@ public class WindowManager extends JFrame {
         return textProperties;
     }
 
+    public void updateTextProperties(){
+        textProperties = config.getTextConfig(settingsProperties.getProperty("language"));
+    }
+
     public Properties getSettingsProperties() {
         return settingsProperties;
     }
@@ -72,8 +73,6 @@ public class WindowManager extends JFrame {
         dispose();
         System.exit(0);
     }
-
-
 
     public void setWindow(JPanel panel){
         getContentPane().removeAll();

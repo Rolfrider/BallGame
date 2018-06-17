@@ -52,9 +52,9 @@ public class Server implements Runnable{
 
     public String getScores(){
         Properties properties = configuration.getScores("scoreboard");
-        String massage = "" + properties.size();
-        massage += getPropertyAsString(properties);
-        return massage;
+        String message = "" + properties.size();
+        message += getPropertyAsString(properties);
+        return message;
     }
 
 
@@ -96,13 +96,19 @@ public class Server implements Runnable{
             configuration.saveScores(scores, "scoreboard");
             return true;
         }else {
+            int minValue = Integer.MAX_VALUE;
+            String minKey = "";
             for (String key : scores.stringPropertyNames()) {
-                if (score > Integer.parseInt((String) scores.get(key))) {
-                    scores.remove(key);
-                    scores.put(username, score + "");
-                    configuration.saveScores(scores, "scoreboard");
-                    return true;
+                if (minValue > Integer.parseInt((String) scores.get(key))) {
+                    minValue = Integer.parseInt((String) scores.get(key));
+                    minKey = key;
                 }
+            }
+            if (score > Integer.parseInt((String) scores.get(minKey))) {
+                scores.remove(minKey);
+                scores.put(username, score + "");
+                configuration.saveScores(scores, "scoreboard");
+                return true;
             }
         }
         return false;
