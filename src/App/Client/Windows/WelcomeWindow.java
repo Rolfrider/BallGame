@@ -12,9 +12,7 @@ import java.util.Vector;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class WelcomeWindow extends CustomWindow {
-    private ArrayList<JButton> buttons = new ArrayList<>();
-    private JLabel titleLabel ;
+public class WelcomeWindow extends MenuWindow {
     private JLabel levelLabel ;
 
 
@@ -22,11 +20,6 @@ public class WelcomeWindow extends CustomWindow {
 
     public WelcomeWindow(WindowManager windowParent){
         super(windowParent);
-        initButtons();
-        initLabel();
-        placeComponents();
-        startRaining();
-
     }
 
 
@@ -70,7 +63,7 @@ public class WelcomeWindow extends CustomWindow {
         add(levelLabel, bagConstraints);
     }
 
-    private void initLabel() {
+    protected void initLabel() {
         titleLabel = new JLabel(windowParent.getTextProperties().getProperty("game title"));
         titleLabel.setForeground(Color.WHITE);
 
@@ -96,7 +89,7 @@ public class WelcomeWindow extends CustomWindow {
         levelLabel.setForeground(Color.GRAY);
     }
 
-    private void initButtons(){
+    protected void initButtons(){
         buttons.add(new JButton(windowParent.getTextProperties().getProperty("play label")));
         buttons.add(new JButton(windowParent.getTextProperties().getProperty("scoreboard label")));
         buttons.add(new JButton(windowParent.getTextProperties().getProperty("options label")));
@@ -114,19 +107,7 @@ public class WelcomeWindow extends CustomWindow {
             stopRaining();
             windowParent.exit();});
 
-        for (JButton b : buttons) {
-            b.setForeground(Color.RED);
-            b.setOpaque(false);
-            b.setContentAreaFilled(false);
-            b.setBorderPainted(false);
-        
-        }
 
-    }
-
-    @Override
-    public Dimension getPreferredSize() {
-        return new Dimension(500,600);
     }
 
     @Override
@@ -134,11 +115,6 @@ public class WelcomeWindow extends CustomWindow {
         super.paintComponent(g);
         Graphics2D graphics2D = (Graphics2D) g;
         int fontSize = (getSize().height + getSize().width)/40;
-        for (JButton b : buttons) {
-            b.setFont(new Font(Font.SERIF,Font.ITALIC, fontSize));
-        }
-        titleLabel.setFont(new Font(Font.SERIF, Font.BOLD, fontSize*3));
         levelLabel.setFont(new Font(Font.SERIF, Font.BOLD, fontSize));
-
     }
 }

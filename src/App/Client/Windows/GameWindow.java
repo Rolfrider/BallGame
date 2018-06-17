@@ -13,23 +13,18 @@ import App.Client.WindowManager;
 import javax.swing.*;
 import java.awt.*;
 
-public class GameWindow extends JPanel {
+public class GameWindow extends CustomWindow {
 
     private Level level;
     private HUD hud;
     private GameLoop gameLoop;
     private LevelLoader levelLoader = new LevelLoader();
     private int currentLevel = 1;
-    private WindowManager windowParent; // A JFrame
-
-
 
 
 
     public GameWindow(WindowManager windowParent){
-        super();
-        this.windowParent = windowParent;
-        setBackground(Color.BLACK);
+        super(windowParent);
         gameLoop = new GameLoop(this);
         level = Client.getLevel(currentLevel);
         if (level == null){
@@ -44,6 +39,7 @@ public class GameWindow extends JPanel {
                         + windowParent.getSettingsProperties().get("difficulty"))));
         updateScore();
         start();
+        startRaining();
     }
 
 
@@ -65,6 +61,7 @@ public class GameWindow extends JPanel {
 
     public void levelUp(){
         hud.setPaused(true);
+        stopRaining();
         currentLevel++;
         if(currentLevel > Integer.parseInt((String) windowParent.getSettingsProperties().get("max_level"))){
             currentLevel--;
@@ -81,15 +78,18 @@ public class GameWindow extends JPanel {
         hud.setLevel(currentLevel);
         updateScore();
         gameLoop = new GameLoop(this);
-
+        startRaining();
         start();
     }
 
     public void die(){
         hud.setPaused(true);
+        stopRaining();
         hud.setLives(hud.getLives()-1);
-        if(hud.getLives() < 0 )
+        if(hud.getLives() < 0 ) {
             gameOver();
+            return;
+        }
         level = Client.getLevel(currentLevel);
         if (level == null){
             windowParent.dialog("Could not load level from server.");
@@ -98,12 +98,13 @@ public class GameWindow extends JPanel {
         level.init();
         updateScore();
         gameLoop = new GameLoop(this);
-
+        startRaining();
         start();
     }
 
     public void gameOver(){
         updateScore();
+        stopRaining();
         windowParent.setWindow(new GameOverWindow(windowParent, hud.getScore()));
     }
 

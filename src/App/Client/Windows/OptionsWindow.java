@@ -6,16 +6,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class OptionsWindow extends CustomWindow {
-    private ArrayList<JButton> buttons = new ArrayList<>();
-    private JLabel optionsLabel;
+public class OptionsWindow extends MenuWindow {
 
     public OptionsWindow(WindowManager windowParent){
         super(windowParent);
-        initButtons();
-        initLabel();
-        placeComponents();
-        startRaining();
     }
     protected void placeComponents() {
         GridBagConstraints bagConstraints = new GridBagConstraints();
@@ -30,7 +24,7 @@ public class OptionsWindow extends CustomWindow {
         bagConstraints.weighty = 1.0;
         bagConstraints.anchor = GridBagConstraints.PAGE_START;
 
-        add(optionsLabel, bagConstraints);
+        add(titleLabel, bagConstraints);
 
         //Other components setup
         bagConstraints.gridy = 3;
@@ -47,7 +41,7 @@ public class OptionsWindow extends CustomWindow {
         add(buttons.get(1), bagConstraints);
     }
 
-    private void initButtons() {
+    protected void initButtons() {
         buttons.add(new JButton(windowParent.getTextProperties().getProperty("back label")));
         buttons.add(new JButton(windowParent.getTextProperties().getProperty("exit label")));
         buttons.get(0).addActionListener( actionEvent -> {
@@ -57,35 +51,11 @@ public class OptionsWindow extends CustomWindow {
             stopRaining();
             windowParent.exit();});
 
-        for (JButton b : buttons) {
-            b.setForeground(Color.BLUE);
-            b.setOpaque(false);
-            b.setContentAreaFilled(false);
-            b.setBorderPainted(false);
-        }
     }
 
-    private void initLabel() {
-        optionsLabel = new JLabel(windowParent.getTextProperties().getProperty("options label"));
-        optionsLabel.setForeground(Color.WHITE);
-
+    protected void initLabel() {
+        titleLabel = new JLabel(windowParent.getTextProperties().getProperty("options label"));
+        titleLabel.setForeground(Color.WHITE);
     }
 
-
-    @Override
-    public Dimension getPreferredSize() {
-        return new Dimension(500,600);
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Graphics2D graphics2D = (Graphics2D) g;
-        // Resize the text on buttons
-        int fontSize = (getSize().height + getSize().width)/40;
-        for (JButton b : buttons) {
-            b.setFont(new Font(Font.SERIF,Font.ITALIC, fontSize));
-        }
-        optionsLabel.setFont(new Font(Font.SERIF, Font.BOLD, fontSize*3));
-    }
 }
