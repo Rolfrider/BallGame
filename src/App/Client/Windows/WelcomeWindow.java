@@ -14,9 +14,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class WelcomeWindow extends MenuWindow {
     private JLabel levelLabel ;
-
-
-
+    private JLabel onlineLabel ;
 
     public WelcomeWindow(WindowManager windowParent){
         super(windowParent);
@@ -61,6 +59,10 @@ public class WelcomeWindow extends MenuWindow {
         bagConstraints.gridy = 7;
 
         add(levelLabel, bagConstraints);
+
+        bagConstraints.gridy = 8;
+
+        add(onlineLabel, bagConstraints);
     }
 
     protected void initLabel() {
@@ -84,9 +86,17 @@ public class WelcomeWindow extends MenuWindow {
         levelLabel = new JLabel(windowParent.getTextProperties().getProperty("level label")
         + " : " + levelVal );
 
-
-
         levelLabel.setForeground(Color.GRAY);
+
+        switch (windowParent.getSettingsProperties().getProperty("online")) {
+            case "0":
+                onlineLabel = new JLabel(windowParent.getTextProperties().getProperty("offline"));
+                break;
+            case "1":
+                onlineLabel = new JLabel(windowParent.getTextProperties().getProperty("online"));
+                break;
+        }
+        onlineLabel.setForeground(Color.GRAY);
     }
 
     protected void initButtons(){
@@ -116,5 +126,6 @@ public class WelcomeWindow extends MenuWindow {
         Graphics2D graphics2D = (Graphics2D) g;
         int fontSize = (getSize().height + getSize().width)/40;
         levelLabel.setFont(new Font(Font.SERIF, Font.BOLD, fontSize));
+        onlineLabel.setFont(new Font(Font.SERIF, Font.BOLD, fontSize));
     }
 }

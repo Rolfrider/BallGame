@@ -58,8 +58,34 @@ public class WindowManager extends JFrame {
         textProperties = config.getTextConfig(settingsProperties.getProperty("language"));
     }
 
+    public void updateScores(String username, int score){
+        Properties scores = config.getScores("scoreboard");
+        if (scores.size() < 6){
+            scores.put(username, score + "");
+            config.saveScores(scores, "scoreboard");
+        }else {
+            int minValue = Integer.MAX_VALUE;
+            String minKey = "";
+            for (String key : scores.stringPropertyNames()) {
+                if (minValue > Integer.parseInt((String) scores.get(key))) {
+                    minValue = Integer.parseInt((String) scores.get(key));
+                    minKey = key;
+                }
+            }
+            if (score > Integer.parseInt((String) scores.get(minKey))) {
+                scores.remove(minKey);
+                scores.put(username, score + "");
+                config.saveScores(scores, "scoreboard");
+            }
+        }
+    }
+
     public Properties getSettingsProperties() {
         return settingsProperties;
+    }
+
+    public Properties getScoreboard() {
+        return config.getScores("scoreboard");
     }
 
     public Configuration getConfig() {

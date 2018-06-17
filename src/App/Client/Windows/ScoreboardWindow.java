@@ -10,8 +10,6 @@ import java.util.Arrays;
 import java.util.Properties;
 import java.util.SortedMap;
 
-// TODO : wczytywanie z pliku jak serwer zwróci null, sortowanie przed wyswietleniem
-
 public class ScoreboardWindow extends MenuWindow {
 
     private ArrayList<JLabel> scoreLabel = new ArrayList<>();
@@ -22,46 +20,23 @@ public class ScoreboardWindow extends MenuWindow {
         super();
         this.windowParent = windowParent;
 
-        Properties properties = Client.getScores();
-        if(properties != null) {
-            properties.forEach((key, value) -> {
-                int newScore = Integer.parseInt((String) value);
-                if(scores.size()>0){
-                    for (int i = 0; i < scores.size(); i++) {
-                        if(newScore>Integer.parseInt(scores.get(i))){
-                            names.add(i,(String) key);
-                            scores.add(i,(String) value);
-                            break;
-                        }else if(i+1==scores.size()){
-                            names.add((String) key);
-                            scores.add((String) value);
-                            break;
-                        }
-                    }
-                }
-                else{
-                    names.add((String) key);
-                    scores.add((String) value);
-                }
-
-
-            });
+        if(windowParent.getSettingsProperties().getProperty("online").equals("1")){
+            Properties properties = Client.getScores();
+            if(properties != null) {
+                loadScores(properties);
+            }else {
+                windowParent.dialog("Could not get scores form the server.");
+                loadScores(windowParent.getScoreboard());
+            }
         }else {
-            windowParent.dialog("Could not get scores form the server.");
-            Arrays.asList("jbutton,lhamilton,pmaldonado,fmassa,nrosberg".split(","))
-                    .forEach(a -> names.add(a));
-            Arrays.asList("2000,1800,1600,1400,1000".split(","))
-                    .forEach(a -> scores.add(a));
+            loadScores(windowParent.getScoreboard());
         }
-
-
 
         initButtons();
         buttonsLook();
         initLabel();
         placeComponents();
         startRaining();
-
 
     }
     protected void placeComponents() {
@@ -96,7 +71,7 @@ public class ScoreboardWindow extends MenuWindow {
         add(buttons.get(0), bagConstraints);
 
 
-        bagConstraints.gridy = k++;
+        bagConstraints.gridy = k;
 
         add(buttons.get(1), bagConstraints);
     }
@@ -111,6 +86,28 @@ public class ScoreboardWindow extends MenuWindow {
             stopRaining();
             windowParent.exit();});
 
+    }
+
+    private void loadScores(Properties properties) {
+        properties.forEach((key, value) -> {
+            int newScore = Integer.parseInt((String) value);
+            if (scores.size() > 0) {
+                for (int i = 0; i < scores.size(); i++) {
+                    if (newScore > Integer.parseInt(scores.get(i))) {
+                        names.add(i, (String) key);
+                        scores.add(i, (String) value);
+                        break;
+                    } else if (i + 1 == scores.size()) {
+                        names.add((String) key);
+                        scores.add((String) value);
+                        break;
+                    }
+                }
+            } else {
+                names.add((String) key);
+                scores.add((String) value);
+            }
+        });
     }
 
     protected void initLabel() {

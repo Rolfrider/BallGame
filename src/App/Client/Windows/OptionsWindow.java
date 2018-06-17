@@ -20,7 +20,7 @@ public class OptionsWindow extends MenuWindow {
         bagConstraints.gridx = 1;
         bagConstraints.gridy = 0;
         bagConstraints.gridheight = 2;
-        bagConstraints.gridwidth = 1;
+        bagConstraints.gridwidth = 3;
         bagConstraints.weighty = 1.0;
         bagConstraints.anchor = GridBagConstraints.PAGE_START;
 
@@ -33,27 +33,27 @@ public class OptionsWindow extends MenuWindow {
         bagConstraints.anchor = GridBagConstraints.CENTER;
 
         bagConstraints.gridy = 4;
-        bagConstraints.gridx = 0;
-        add(buttons.get(0), bagConstraints);
         bagConstraints.gridx = 1;
-        add(buttons.get(1), bagConstraints);
+        add(buttons.get(0), bagConstraints);
         bagConstraints.gridx = 2;
+        add(buttons.get(1), bagConstraints);
+        bagConstraints.gridx = 3;
         add(buttons.get(2), bagConstraints);
 
         bagConstraints.gridy = 5;
-        bagConstraints.gridx = 0;
-        add(buttons.get(3), bagConstraints);
         bagConstraints.gridx = 1;
+        add(buttons.get(3), bagConstraints);
+        bagConstraints.gridx = 3;
         add(buttons.get(4), bagConstraints);
 
         bagConstraints.gridy = 6;
-        bagConstraints.gridx = 0;
-        add(buttons.get(5), bagConstraints);
         bagConstraints.gridx = 1;
+        add(buttons.get(5), bagConstraints);
+        bagConstraints.gridx = 3;
         add(buttons.get(6), bagConstraints);
 
         bagConstraints.gridy = 7;
-        bagConstraints.gridx = 1;
+        bagConstraints.gridx = 2;
         add(buttons.get(7), bagConstraints);
 
         bagConstraints.gridy = 8;

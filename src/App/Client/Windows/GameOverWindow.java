@@ -2,14 +2,17 @@ package App.Client.Windows;
 
 import App.Client.Client;
 import App.Client.WindowManager;
+import App.Server.Server;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Properties;
 
 public class GameOverWindow extends MenuWindow {
     private  JLabel scoreLabel ;
     private int score;
+    private String user;
 
     public GameOverWindow(WindowManager windowParent, int score) {
         super();
@@ -19,11 +22,18 @@ public class GameOverWindow extends MenuWindow {
         buttonsLook();
         initLabel();
         placeComponents();
-        if(Client.postScore(windowParent.usernameDialog(), score)){
-            windowParent.dialog("Successfully added your score to the server scoreboard");
-        }else {
-            windowParent.dialog("Your score can't be added to the server scoreboard");
+        user = windowParent.usernameDialog();
+        if(windowParent.getSettingsProperties().getProperty("online").equals("1")){
+            if(Client.postScore(user, score)){
+                windowParent.dialog("Successfully added your score to the server scoreboard");
+            }else {
+                windowParent.dialog("Your score can't be added to the server scoreboard");
+                windowParent.updateScores(user, score);
+            }
+        }else{
+            windowParent.updateScores(user, score);
         }
+
         startRaining();
     }
 
