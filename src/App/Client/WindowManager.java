@@ -25,6 +25,10 @@ public class WindowManager extends JFrame {
             dialog("Can not download configuration from server. Local config will be used instead");
             settingsProperties = config.getSettings();
         }
+        if(settingsProperties == null){
+            dialog("Can not load configuration. Application has to be in the same folder with src folder");
+            System.exit(0);
+        }
         textProperties = config.getTextConfig(settingsProperties.getProperty("language"));
         JPanel panel = new WelcomeWindow(this);
         add(panel);

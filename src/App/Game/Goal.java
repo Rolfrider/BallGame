@@ -34,9 +34,9 @@ public class Goal extends GameObject {
      */
     @Override
     public Rectangle2D.Double getShape() {
-        double verticalFrame = getHeight()*0.02;
-        double horizontalFrame = getWidth()*0.02;
-        return new Rectangle2D.Double(getX()+ horizontalFrame,getY()+ verticalFrame
+        double verticalFrame = getHeight()*0.25;
+        double horizontalFrame = getWidth()*0.5;
+        return new Rectangle2D.Double(getX()+ horizontalFrame/2,getY()+ verticalFrame/2
                 ,getWidth()- horizontalFrame,getHeight()- verticalFrame);
     }
 

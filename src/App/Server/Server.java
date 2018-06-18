@@ -4,6 +4,7 @@ import App.Config.Configuration;
 import App.Config.LevelLoader;
 import App.Game.Level;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -11,7 +12,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Properties;
 
-public class Server implements Runnable{
+/**
+ * Game server
+ */
+public class Server extends JFrame implements Runnable{
 
     private ServerSocket serverSocket;
 
@@ -20,7 +24,13 @@ public class Server implements Runnable{
     private static final int port = 40000;// temporary in future move to property
 
     public Server(ServerSocket serverSocket) {
+        super("Server");
         this.serverSocket = serverSocket;
+        JButton b = new JButton("stop and exit");
+        b.addActionListener( actionEvent -> System.exit(0));
+        add(b);
+        pack();
+        setVisible(true);
         new Thread(this).start();
     }
 
@@ -82,6 +92,11 @@ public class Server implements Runnable{
     }
 
 
+    /**
+     * Creates new thread to service client
+     * @param clientService
+     * @throws IOException
+     */
     private synchronized void addClientService(Service clientService)
             throws IOException{
         clientService.init();
@@ -89,6 +104,13 @@ public class Server implements Runnable{
         System.out.println("Add new client");
     }
 
+
+    /**
+     * Saves score if it is good enough
+     * @param username
+     * @param score
+     * @return
+     */
     public synchronized boolean updateScores(String username, int score){
         Properties scores = configuration.getScores("scoreboard");
         if (scores.size() < 6){

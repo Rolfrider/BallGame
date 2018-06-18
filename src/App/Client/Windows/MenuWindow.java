@@ -11,10 +11,17 @@ public abstract class MenuWindow extends CustomWindow {
     protected JLabel titleLabel;
     protected ArrayList<JButton> buttons = new ArrayList<>();
 
+    /**
+     * Sets Layout to GridBagLayout
+     */
     public MenuWindow(){
         setLayout(new GridBagLayout());
     }
 
+    /**
+     * Sets Layout to GridBagLayout, initialize labels and buttons, starts raining
+     * @param windowParent
+     */
     public MenuWindow(WindowManager windowParent) {
         super(windowParent);
         setLayout(new GridBagLayout());
@@ -25,6 +32,9 @@ public abstract class MenuWindow extends CustomWindow {
         startRaining();
     }
 
+    /**
+     * Describes how buttons looks like
+     */
     protected void buttonsLook(){
         for (JButton b : buttons) {
             b.setForeground(Color.BLUE);
@@ -34,6 +44,9 @@ public abstract class MenuWindow extends CustomWindow {
         }
     }
 
+    /**
+     * Describe how components are placed in GridBagLayout
+     */
     protected abstract void placeComponents();
 
     protected abstract void initButtons();

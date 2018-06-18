@@ -15,10 +15,16 @@ public class CustomWindow extends JPanel {
     private RainController rainController;
 
 
+    /**
+     * Sets background to black
+     */
     public CustomWindow(){
         setBackground(Color.BLACK);
     }
 
+    /**
+     * Sets background to black
+     */
     public CustomWindow(WindowManager windowParent){
         super();
         this.windowParent = windowParent;
@@ -28,7 +34,9 @@ public class CustomWindow extends JPanel {
     }
 
 
-
+    /**
+     * Starts new thread responsible for managing rain in background
+     */
     public void startRaining(){
         rainDrops.add(new RainDrop());
         rainController = new RainController(this, rainDrops);

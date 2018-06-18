@@ -11,6 +11,7 @@ public class OptionsWindow extends MenuWindow {
     public OptionsWindow(WindowManager windowParent){
         super(windowParent);
     }
+
     protected void placeComponents() {
         GridBagConstraints bagConstraints = new GridBagConstraints();
         /* How to understand what is happening here :

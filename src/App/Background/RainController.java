@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.util.concurrent.BlockingQueue;
 
+
 public class RainController implements Runnable{
     private JPanel windowParent;
     private BlockingQueue<RainDrop> rainDrops;
@@ -18,8 +19,9 @@ public class RainController implements Runnable{
     private int fps;
 
     /**
-     * Sets active windowParent
+     *
      * @param windowParent
+     * @param rainDrops
      */
     public RainController(JPanel windowParent, BlockingQueue<RainDrop> rainDrops){
         this.rainDrops = rainDrops;
@@ -77,6 +79,9 @@ public class RainController implements Runnable{
         }
     }
 
+    /**
+     * Moves all rain drops and deletes rain drops off the screen
+     */
     private void update() {
         rainDrops.forEach( rainDrop -> {
             rainDrop.move();

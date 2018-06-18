@@ -1,5 +1,8 @@
 package App.Config;
 
+/**
+ * Defines protocol messages
+ */
 public class NetProtocol {
 
     public static final String SCORES = "scores";

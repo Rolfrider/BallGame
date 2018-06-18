@@ -4,6 +4,9 @@ package App.Config;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Loads images
+ */
 public class SpriteLoader {
 
     public static Image loadSprite(String id){

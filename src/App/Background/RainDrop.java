@@ -12,6 +12,9 @@ public class RainDrop implements Movable {
     private int y = 0;
     private double vel = 1;
 
+    /**
+     * Sets x to random value
+     */
     public RainDrop(){
         Random rand = new Random();
         this.x = rand.nextDouble();

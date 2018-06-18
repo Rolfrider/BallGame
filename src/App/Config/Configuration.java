@@ -23,6 +23,7 @@ public class Configuration {
             iStream.close();
         }catch (IOException e) {
             System.out.println(e.getMessage());
+            return null;
         }
         return properties;
     }

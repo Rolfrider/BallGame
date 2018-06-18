@@ -26,6 +26,10 @@ public class Service implements Runnable {
         this.server = server;
     }
 
+    /**
+     * Initialize output and input streams
+     * @throws IOException
+     */
     void init() throws IOException {
         Reader reader = new InputStreamReader(clientSocket.getInputStream());
         input = new BufferedReader(reader);
